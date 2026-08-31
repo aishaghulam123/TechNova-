@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Full-Stack Web Engineering - Teach Nova</title>
+
+<!-- GSAP & ScrollTrigger Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<!-- Remix Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+<!-- External CSS Link -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+
+<!-- Background Animation Layer -->
+<div class="bg-animation-wrapper">
+<div class="bg-grid"></div>
+<div class="glow-blob" style="top: 5%; left: 5%;"></div>
+<div class="glow-blob blob-2"></div>
+<div class="glow-blob blob-3"></div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav" id="nav">
+<div class="nav-inner">
+<a href="#top" class="brand">
+<span class="brand-mark"><i class="ri-flashlight-fill"></i></span>
+<span class="brand-text">Tech<span>Nova</span></span>
+</a>
+
+<nav class="nav-links" id="navMenu">
+<a href="#features">Features</a>
+<a href="#courses">Courses</a>
+<a href="#analytics">Analytics</a>
+<a href="#presence">Presence</a>
+<a href="#stories">Stories</a>
+<a href="#faq">FAQ</a>
+</nav>
+
+<button class="button">
+<span class="button-content">Get Started <i class="ri-arrow-right-up-line"></i></span>
+</button> 
+
+<button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="ri-menu-line"></i></button>
+</div>
+</header>
+
+<div class="container">
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+<a href="#top">Teach Nova</a> &gt; <a href="#top">IT & Software</a> &gt; <span>Full-Stack Web Engineering</span>
+</div>
+
+<!-- Hero Section -->
+<div class="hero-section">
+<div class="hero-text-content">
+    <h1 class="course-title">Full-Stack Web Engineering & Cloud Architecture</h1>
+    <p class="course-subtitle">Master modern frontend frameworks, backend microservices, database architecture, and deployment pipelines with real-world tech projects.</p>
+    
+    <div class="course-badges">
+        <span class="badge">⭐ 4.9 (2,150+ Reviews)</span>
+        <span class="badge">👥 6,800+ Students</span>
+        <span class="badge">🕒 48 Hours Live & Recorded</span>
+        <span class="badge">🛡️ Verified IT Certification</span>
+    </div>
+</div>
+
+<div class="video-container">
+    <div class="play-button">
+        <div class="play-icon"></div>
+    </div>
+</div>
+</div>
+
+<!-- Main Content Layout -->
+<div class="main-grid">
+
+<!-- Left Column -->
+<div>
+<!-- Synopsis Card -->
+<div class="card gsap-reveal">
+    <div class="card-header">⚡ Course Synopsis</div>
+    <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem;">
+        Welcome to Teach Nova's flagship web engineering course. Designed by industry architects, this program takes you step-by-step through modern web development. You will learn to construct high-performance backend systems, interactive interfaces, and deploy secure enterprise solutions.
+    </p>
+
+    <h4 style="font-size: 0.95rem; color: var(--electric-soft); margin-bottom: 0.5rem;">Learning Outcomes</h4>
+    <div class="outcomes-grid">
+        <div class="outcome-box"><div class="check-circle">✓</div><span>Architect end-to-end full-stack applications with Node.js</span></div>
+        <div class="outcome-box"><div class="check-circle">✓</div><span>Design scalable SQL and NoSQL database schemas with ORMs</span></div>
+        <div class="outcome-box"><div class="check-circle">✓</div><span>Implement JWT authentication, OAuth2, and web security</span></div>
+        <div class="outcome-box"><div class="check-circle">✓</div><span>Automate deployments using Docker, CI/CD, and AWS</span></div>
+    </div>
+
+    <h4 style="font-size: 0.95rem; color: var(--electric-soft); margin-bottom: 0.4rem;">Prerequisites</h4>
+    <ul class="prereq-list">
+        <li>Basic computer literacy and familiarity with browser operations.</li>
+        <li>No prior coding experience is strictly required; we begin from base principles.</li>
+    </ul>
+</div>
+
+<!-- Curriculum Accordion Card -->
+<div class="card gsap-reveal">
+    <div class="card-header">📚 Syllabus & Curriculum Accordion</div>
+
+    <div class="accordion-item">
+        <div class="accordion-title" onclick="toggleAcc(this)">
+            <span>Module 1: Frontend Architecture & Modern UI</span>
+            <span>▼</span>
+        </div>
+        <div class="accordion-content">
+            <div class="lesson-row"><span>▶ HTML5 & Modern CSS Layouts</span><span>45 mins</span></div>
+            <div class="lesson-row"><span>▶ React Fundamentals & State Management</span><span>90 mins</span></div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-title" onclick="toggleAcc(this)">
+            <span>Module 2: JavaScript ES6+ & Dynamic State Management</span>
+            <span>▼</span>
+        </div>
+        <div class="accordion-content">
+            <div class="lesson-row"><span>▶ DOM Manipulation</span><span>60 mins</span></div>
+            <div class="lesson-row"><span>▶ Event-Driven Programming</span><span>50 mins</span></div>
+            <div class="lesson-row"><span>▶ Containerized Deployment</span><span>55 mins</span></div>
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-title" onclick="toggleAcc(this)">
+            <span>Module 3: Server-Side Microservices & Cloud Hosting</span>
+            <span>▼</span>
+        </div>
+        <div class="accordion-content">
+            <div class="lesson-row"><span>▶ RESTful API Architecture & Auth</span><span>60 mins</span></div>
+            <div class="lesson-row"><span>▶ Containerization with Docker & Cloud</span><span>55 mins</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- Instructor Profile Card -->
+<div class="card gsap-reveal">
+    <div class="card-header">👤 Instructor Profile</div>
+    <div class="instructor-box">
+        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&auto=format&fit=crop" class="instructor-img" alt="Dr. Sarah Jenkins">
+        <div>
+            <h4 style="font-size: 1.05rem;">Dr. Sarah Jenkins</h4>
+            <div style="font-size: 0.8rem; color: var(--gold); margin-bottom: 0.4rem;">Lead Cloud Architect & Teach Nova Instructor</div>
+            <p style="font-size: 0.85rem; color: var(--muted);">Sarah has over 10 years of software engineering experience leading cloud infrastructure teams at top tech firms. She specializes in building modern full-stack systems and mentoring future developers.</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Right Sidebar Action Cards -->
+<div class="sidebar">
+<!-- View A: Buy Now Mode -->
+<div class="action-card gsap-reveal" id="paidCard">
+    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80" alt="Online Learning Course Preview" class="action-image">
+    <div class="price-container">
+        <span class="price-main">$99.99</span>
+        <span class="price-old">$249.99</span>
+        <span class="off-tag">60% OFF</span>
+    </div>
+    <button class="btn-main btn-buy" onclick="switchView('unlocked')">⚡ Enroll Now</button>
+    <div class="guarantee-text">🛡️ 30-Day Money-Back Guarantee</div>
+    <button class="switch-view-btn" onclick="switchView('unlocked')">[ Switch View: Classroom ]</button>
+</div>
+
+<!-- View B: Classroom Unlocked Mode -->
+<div class="action-card" id="unlockedCard" style="display: none; border-color: var(--electric);">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80" alt="Classroom Student Dashboard" class="action-image">
+    <h3 style="font-size: 1.1rem; margin-bottom: 4px; font-weight: 700;">Classroom Unlocked</h3>
+    <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;">Full access granted to live video lectures, source code & discord group.</p>
+    <button class="btn-main btn-classroom">▶ Go to Classroom</button>
+    <div class="guarantee-text">✓ Lifetime Access Included</div>
+    <button class="switch-view-btn" onclick="switchView('paid')">[ Switch View: Paid Mode ]</button>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand-col">
+<a href="#top" class="footer-brand">
+    <span class="footer-brand-mark">TN</span>
+    <span>Tech<span class="fb-accent">Nova</span></span>
+</a>
+<p class="footer-about">
+    Pakistan's premium IT learning platform — live cohorts, mentor-reviewed
+    projects and career outcomes that travel with you.
+</p>
+<div class="newsletter-box">
+    <input type="email" placeholder="Your email address" aria-label="Email">
+    <button type="button">Subscribe</button>
+</div>
+<div class="social-row" aria-label="Social links">
+    <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+    <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+    <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+    <a href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
+    <a href="#" aria-label="X"><i class="ri-twitter-x-line"></i></a>
+</div>
+</div>
+
+<div class="footer-col">
+<h5>Company</h5>
+<ul class="footer-links">
+    <li><a href="#top">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#trainers">Trainers</a></li>
+    <li><a href="#stories">Success Stories</a></li>
+    <li><a href="#faq">FAQ</a></li>
+</ul>
+</div>
+
+<div class="footer-col">
+<h5>Courses</h5>
+<ul class="footer-links">
+    <li><a href="#courses">Full Stack Development</a></li>
+    <li><a href="#courses">AI &amp; Machine Learning</a></li>
+    <li><a href="#courses">UI/UX Design</a></li>
+    <li><a href="#courses">Flutter Development</a></li>
+    <li><a href="#courses">Cloud Computing</a></li>
+</ul>
+</div>
+
+<div class="footer-col footer-contact">
+<h5>Get in touch</h5>
+<ul class="footer-contact-list">
+    <li><i class="ri-map-pin-2-line"></i><span>2nd Floor, Techno Tower<br>Shahrah-e-Faisal, Karachi</span></li>
+    <li><i class="ri-mail-line"></i><a href="mailto:admissions@technova.pk">admissions@technova.pk</a></li>
+    <li><i class="ri-phone-line"></i><a href="tel:+923001234567">+92 300 1234567</a></li>
+</ul>
+</div>
+</div>
+
+<div class="footer-bottom">
+<span>© 2026 TechNova Academy. All rights reserved.</span>
+<div class="footer-legal">
+<a href="#">Privacy Policy</a>
+<a href="#">Terms of Service</a>
+<a href="#">Cookies</a>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- External JavaScript Link -->
+<script src="index.js"></script>
+</body>
+</html>

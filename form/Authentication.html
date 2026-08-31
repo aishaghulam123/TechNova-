@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechNova(SINGUP or LOGOIN FORM)</title>
+  <link rel="stylesheet" href="Authentication.css">
+</head>
+<body>
+
+  <!-- Dynamic Particle Network Canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Main Portal Box -->
+  <main class="portal-wrapper">
+    
+    <!-- Branding & Graphic Column -->
+    <section class="graphic-section">
+      <header class="brand-header">
+        <div class="brand-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F1012" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h2>TechNova</h2>
+          <p>Academy</p>
+        </div>
+      </header>
+
+      <div class="graphic-container">
+        <svg viewBox="0 0 400 300" width="100%" height="100%">
+          <circle cx="110" cy="110" r="70" fill="rgba(255, 170, 0, 0.1)" />
+          <circle cx="280" cy="200" r="80" fill="rgba(47, 128, 237, 0.1)" />
+
+          <rect x="80" y="80" width="230" height="150" rx="12" fill="#191b1f" stroke="#2F80ED" stroke-width="1.5" />
+          
+          <circle cx="100" cy="98" r="4" fill="#ff5f56" />
+          <circle cx="112" cy="98" r="4" fill="#FFAA00" />
+          <circle cx="124" cy="98" r="4" fill="#27c93f" />
+
+          <rect x="100" y="120" width="100" height="8" rx="4" fill="#FFAA00" />
+          <rect x="100" y="170" width="55" height="30" rx="6" fill="#0F1012" stroke="rgba(255,255,255,0.1)" />
+          <rect x="165" y="170" width="55" height="30" rx="6" fill="#0F1012" stroke="rgba(255,255,255,0.1)" />
+          <rect x="230" y="170" width="55" height="30" rx="6" fill="#0F1012" stroke="rgba(255,255,255,0.1)" />
+
+          <circle cx="270" cy="130" r="28" fill="url(#grad-gold-svg)" />
+          <polygon points="264,118 282,130 264,142" fill="#0F1012" />
+
+          <g transform="translate(60, 190)">
+            <rect x="0" y="0" width="110" height="60" rx="10" fill="#0F1012" stroke="#2F80ED" stroke-width="1" />
+            <rect x="12" y="15" width="50" height="6" rx="3" fill="#2F80ED" />
+            <rect x="12" y="28" width="80" height="5" rx="2.5" fill="#75767A" />
+            <circle cx="90" cy="45" r="7" fill="#FFAA00" />
+            <path d="M87 45 L89 47 L93 43" stroke="#0F1012" stroke-width="1.5" fill="none" />
+          </g>
+
+          <defs>
+            <linearGradient id="grad-gold-svg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffc453" />
+              <stop offset="100%" stop-color="#ff8a00" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Forms Column -->
+    <section class="form-section-wrapper">
+      
+      <nav class="top-nav-tabs">
+        <button type="button" class="nav-tab active" id="tabLogin">Login</button>
+        <button type="button" class="nav-tab" id="tabSignup">Sign Up</button>
+      </nav>
+
+      <div class="role-selector">
+        <button type="button" class="role-btn active" id="roleStudent">Student</button>
+        <button type="button" class="role-btn" id="roleInstructor">Instructor</button>
+      </div>
+
+      <!-- Login View -->
+      <div id="loginFormSection" class="form-container active">
+        <form id="authLoginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="student@technova.com" required>
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required>
+          </div>
+          <button type="submit" class="btn-submit" id="loginBtn">Login as Student</button>
+        </form>
+        <p class="bottom-switch-text">
+          Don't have an account? <a id="linkToSignup">Create Account</a>
+        </p>
+      </div>
+
+      <!-- Signup View -->
+      <div id="signupFormSection" class="form-container">
+        <form id="authSignupForm">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" placeholder="John Doe" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="signupEmail">Email Address</label>
+            <input type="email" id="signupEmail" placeholder="example@technova.com" required>
+          </div>
+
+          <div class="form-group" id="studentCourseField">
+            <label for="courseSelect">Select Course</label>
+            <select id="courseSelect">
+              <option>Full-Stack Web Development (MERN)</option>
+              <option>Frontend Dev (React / Next.js)</option>
+              <option>Backend Dev (Node.js / Python)</option>
+              <option>Cyber Security & Networking</option>
+              <option>UI/UX Design for Web</option>
+            </select>
+          </div>
+
+          <div class="form-group hidden-field" id="instructorExpertiseField">
+            <label for="instructorSpec">IT Specialization</label>
+            <input type="text" id="instructorSpec" placeholder="e.g. Senior React Developer, DevOps Specialist">
+          </div>
+
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" placeholder="••••••••" required>
+          </div>
+
+          <button type="submit" class="btn-submit" id="signupBtn">Register as Student</button>
+        </form>
+        <p class="bottom-switch-text">
+          Already registered? <a id="linkToLogin">Log In</a>
+        </p>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="Authentication.js"></script>
+</body>
+</html>
