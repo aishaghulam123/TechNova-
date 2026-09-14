@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign in — TechNova Academy</title>
+  <meta name="description" content="Login or create your TechNova Academy account — learn live, build projects, earn certificates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <link rel="stylesheet" href="../css/authentication.css" />
+</head>
+<body>
+  <!-- Floating decorative shapes -->
+  <div class="bg-shapes" aria-hidden="true">
+    <span class="shape s1"></span>
+    <span class="shape s2"></span>
+    <span class="shape s3"></span>
+    <span class="shape s4"></span>
+    <span class="shape s5"></span>
+  </div>
+  <main class="auth">
+    <!-- =============== LEFT / HERO =============== -->
+    <section class="hero">
+      <a href="/" class="brand">
+        <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
+        <span class="brand-text"><b>TechNova</b><em>Academy</em></span>
+      </a>
+      <div class="hero-illu" aria-hidden="true">
+        <!-- Inline SVG illustration -->
+        <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#FFAA00"/>
+              <stop offset="1" stop-color="#FF7A00"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#2F80ED"/>
+              <stop offset="1" stop-color="#5B9BFF"/>
+            </linearGradient>
+          </defs>
+          <circle class="i-blob" cx="130" cy="120" r="90" fill="url(#g1)" opacity=".18"/>
+          <circle class="i-blob" cx="410" cy="310" r="110" fill="url(#g2)" opacity=".16"/>
+          <!-- Monitor -->
+          <rect class="i-mon" x="120" y="90" width="290" height="190" rx="16" fill="#fff" stroke="#ECEEF2" stroke-width="2"/>
+          <rect x="120" y="90" width="290" height="26" rx="16" fill="#F8F9FA"/>
+          <circle cx="138" cy="103" r="4" fill="#EF4444"/>
+          <circle cx="152" cy="103" r="4" fill="#FFAA00"/>
+          <circle cx="166" cy="103" r="4" fill="#16A34A"/>
+          <rect x="140" y="132" width="120" height="10" rx="5" fill="#FFAA00"/>
+          <rect x="140" y="150" width="220" height="8" rx="4" fill="#ECEEF2"/>
+          <rect x="140" y="166" width="180" height="8" rx="4" fill="#ECEEF2"/>
+          <rect x="140" y="190" width="80" height="46" rx="10" fill="#2F80ED"/>
+          <rect x="230" y="190" width="80" height="46" rx="10" fill="#FFF3D6"/>
+          <rect x="320" y="190" width="60" height="46" rx="10" fill="#E4EFFD"/>
+          <rect x="200" y="290" width="130" height="10" rx="5" fill="#ECEEF2"/>
+          <!-- Play badge -->
+          <g class="i-play">
+            <circle cx="380" cy="140" r="34" fill="#FFAA00"/>
+            <polygon points="372,126 372,154 394,140" fill="#fff"/>
+          </g>
+          <!-- Certificate card -->
+          <g class="i-cert">
+            <rect x="60" y="260" width="150" height="90" rx="14" fill="#fff" stroke="#ECEEF2" stroke-width="2"/>
+            <rect x="76" y="278" width="80" height="8" rx="4" fill="#2F80ED"/>
+            <rect x="76" y="294" width="110" height="6" rx="3" fill="#ECEEF2"/>
+            <rect x="76" y="306" width="90" height="6" rx="3" fill="#ECEEF2"/>
+            <circle cx="188" cy="332" r="12" fill="#FFAA00"/>
+            <path d="M182 332 l4 4 l8 -8" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+      <h1 class="hero-title">Learn today.<br/><span>Lead tomorrow.</span></h1>
+      <p class="hero-sub">Join thousands of learners mastering in-demand skills with live mentors, real projects and verified certificates.</p>
+      <ul class="feature-list">
+        <li><i class="fa-solid fa-video"></i> Live Classes</li>
+        <li><i class="fa-solid fa-diagram-project"></i> Industry Projects</li>
+        <li><i class="fa-solid fa-award"></i> Certificates</li>
+        <li><i class="fa-solid fa-briefcase"></i> Career Support</li>
+      </ul>
+    </section>
+    <!-- =============== RIGHT / AUTH CARD =============== -->
+    <section class="card-wrap">
+      <div class="auth-card" id="authCard">
+        <!-- Tabs -->
+        <div class="tabs" role="tablist" aria-label="Auth mode">
+          <button class="tab active" role="tab" data-tab="login" aria-selected="true">Login</button>
+          <button class="tab" role="tab" data-tab="signup" aria-selected="false">Sign Up</button>
+          <span class="tab-indicator" aria-hidden="true"></span>
+        </div>
+        <!-- ========= LOGIN ========= -->
+        <form class="panel active" id="loginForm" data-panel="login" novalidate>
+          <header class="p-head">
+            <h2>Welcome back</h2>
+            <p>Sign in to continue your learning journey.</p>
+          </header>
+          <div class="field">
+            <input type="email" id="loginEmail" required autocomplete="email" placeholder=" " />
+            <label for="loginEmail">Email address</label>
+            <small class="err" data-err="loginEmail"></small>
+          </div>
+          <div class="field">
+            <input type="password" id="loginPassword" required autocomplete="current-password" placeholder=" " />
+            <label for="loginPassword">Password</label>
+            <button type="button" class="pw-toggle" data-toggle="loginPassword" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+            <small class="err" data-err="loginPassword"></small>
+          </div>
+          <div class="row-between">
+            <label class="check">
+              <input type="checkbox" id="remember" />
+              <span></span> Remember me
+            </label>
+            <a href="#" class="link" id="forgotLink">Forgot password?</a>
+          </div>
+          <button type="submit" class="btn-primary ripple magnetic">
+            <span>Login</span> <i class="fa-solid fa-arrow-right-long"></i>
+          </button>
+          <div class="divider"><span>or</span></div>
+          <button type="button" class="btn-google ripple" data-google>
+            <img alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"/>
+            Continue with Google
+          </button>
+        </form>
+        <!-- ========= SIGNUP ========= -->
+        <form class="panel" id="signupForm" data-panel="signup" novalidate>
+          <header class="p-head">
+            <h2>Create your account</h2>
+            <p>Start learning with TechNova in under a minute.</p>
+          </header>
+          <div class="field">
+            <input type="text" id="suName" required autocomplete="name" placeholder=" " />
+            <label for="suName">Full name</label>
+            <small class="err" data-err="suName"></small>
+          </div>
+          <div class="field">
+            <input type="email" id="suEmail" required autocomplete="email" placeholder=" " />
+            <label for="suEmail">Email address</label>
+            <small class="err" data-err="suEmail"></small>
+          </div>
+          <div class="field">
+            <input type="password" id="suPassword" required autocomplete="new-password" placeholder=" " />
+            <label for="suPassword">Password</label>
+            <button type="button" class="pw-toggle" data-toggle="suPassword" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+            <small class="err" data-err="suPassword"></small>
+            <div class="pw-strength" aria-hidden="true"><i></i><i></i><i></i><i></i><em id="pwLabel">Password strength</em></div>
+          </div>
+          <div class="field">
+            <input type="password" id="suConfirm" required autocomplete="new-password" placeholder=" " />
+            <label for="suConfirm">Confirm password</label>
+            <button type="button" class="pw-toggle" data-toggle="suConfirm" aria-label="Show password"><i class="fa-regular fa-eye"></i></button>
+            <small class="err" data-err="suConfirm"></small>
+          </div>
+          <fieldset class="roles">
+            <legend>I am joining as</legend>
+            <div class="role-grid">
+              <label class="role-card" data-role="student">
+                <input type="radio" name="role" value="student" checked />
+                <div class="rc-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div class="rc-body">
+                  <b>Student</b>
+                  <span>Learn from experts and build real projects.</span>
+                </div>
+                <i class="fa-solid fa-circle-check rc-check"></i>
+              </label>
+              <label class="role-card" data-role="instructor">
+                <input type="radio" name="role" value="instructor" />
+                <div class="rc-icon alt"><i class="fa-solid fa-chalkboard-user"></i></div>
+                <div class="rc-body">
+                  <b>Instructor</b>
+                  <span>Teach thousands and grow your income.</span>
+                </div>
+                <i class="fa-solid fa-circle-check rc-check"></i>
+              </label>
+            </div>
+          </fieldset>
+          <button type="submit" class="btn-primary ripple magnetic">
+            <span>Create account</span> <i class="fa-solid fa-arrow-right-long"></i>
+          </button>
+          <div class="divider"><span>or</span></div>
+          <button type="button" class="btn-google ripple" data-google>
+            <img alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"/>
+            Continue with Google
+          </button>
+        </form>
+        <p class="foot-note">
+          By continuing you agree to our <a href="#" class="link">Terms</a> & <a href="#" class="link">Privacy Policy</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+  <!-- Modal (forgot password / info) -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+  <!-- Toasts -->
+  <div class="toast-wrap" id="toastWrap"></div>
+  <script src="../js/authentication.js" defer></script>
+</body>
+</html>
