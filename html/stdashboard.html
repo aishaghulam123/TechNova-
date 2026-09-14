@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard — TechNova Academy</title>
+  <meta name="description" content="TechNova Academy student dashboard — track courses, progress, certificates and live classes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+  <link rel="stylesheet" href="../css/stdashboard.css" />
+</head>
+<body>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <a href="#" class="brand" data-nav="Dashboard">
+          <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
+          <span class="brand-text"><b>TechNova</b><em>Academy</em></span>
+        </a>
+        <button class="sb-collapse" id="sbCollapse" aria-label="Collapse sidebar"><i class="fa-solid fa-angles-left"></i></button>
+      </div>
+      <nav class="sb-nav">
+        <span class="sb-label">Overview</span>
+        <a href="#" class="sb-item active" data-tip="Dashboard" data-nav="Dashboard"><i class="fa-solid fa-grip"></i><span>Dashboard</span></a>
+        <a href="#" class="sb-item" data-tip="My Courses" data-nav="My Courses"><i class="fa-solid fa-book-open"></i><span>My Courses</span></a>
+        <a href="#" class="sb-item" data-tip="Continue" data-nav="Continue"><i class="fa-solid fa-play"></i><span>Continue Learning</span></a>
+        <a href="#" class="sb-item" data-tip="Assignments" data-nav="Assignments"><i class="fa-solid fa-file-pen"></i><span>Assignments</span><em class="sb-badge">3</em></a>
+        <a href="#" class="sb-item" data-tip="Quizzes" data-nav="Quizzes"><i class="fa-solid fa-clipboard-question"></i><span>Quizzes</span></a>
+        <a href="#" class="sb-item" data-tip="Certificates" data-nav="Certificates"><i class="fa-solid fa-award"></i><span>Certificates</span></a>
+        <span class="sb-label">Personal</span>
+        <a href="#" class="sb-item" data-tip="Wishlist" data-nav="Wishlist"><i class="fa-regular fa-heart"></i><span>Wishlist</span></a>
+        <a href="#" class="sb-item" data-tip="Messages" data-nav="Messages"><i class="fa-regular fa-comment-dots"></i><span>Messages</span><em class="sb-dot"></em></a>
+        <a href="#" class="sb-item" data-tip="Profile" data-nav="Profile"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+        <a href="#" class="sb-item" data-tip="Settings" data-nav="Settings"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+      </nav>
+      <div class="sb-foot">
+        <div class="sb-upgrade">
+          <div class="up-icon"><i class="fa-solid fa-crown"></i></div>
+          <div><b>Go Pro</b><p>Unlock 84+ premium courses</p></div>
+          <button class="btn-primary btn-sm" data-action="upgrade">Upgrade</button>
+        </div>
+        <a href="#" class="sb-item logout" data-action="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn burger" id="burger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+        <div class="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search courses, lessons, instructors…" />
+          <kbd>⌘K</kbd>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><i class="fa-regular fa-moon"></i></button>
+          <button class="icon-btn bell" id="bellBtn" aria-label="Notifications">
+            <i class="fa-regular fa-bell"></i><em class="dot"></em>
+          </button>
+          <div class="profile" id="profileBtn">
+            <img src="https://i.pravatar.cc/80?img=47" alt="Ayesha Khan" />
+            <div class="p-meta"><b>Ayesha Khan</b><span>Premium student</span></div>
+            <i class="fa-solid fa-chevron-down"></i>
+            <div class="dropdown" id="profileDropdown">
+              <div class="dd-head">
+                <img src="https://i.pravatar.cc/80?img=47" alt="" />
+                <div><b>Ayesha Khan</b><span>ayesha.khan@technova.io</span></div>
+              </div>
+              <a href="#" data-action="profile"><i class="fa-regular fa-user"></i> View Profile</a>
+              <a href="#" data-action="settings"><i class="fa-solid fa-gear"></i> Account Settings</a>
+              <a href="#" data-action="billing"><i class="fa-solid fa-credit-card"></i> Billing</a>
+              <a href="#" data-action="help"><i class="fa-solid fa-life-ring"></i> Help Center</a>
+              <hr />
+              <a href="#" class="danger" data-action="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out</a>
+            </div>
+          </div>
+        </div>
+        <div class="notif-panel" id="notifPanel">
+          <div class="np-head"><b>Notifications</b><a href="#" id="markAllRead">Mark all read</a></div>
+          <div class="np-list" id="notifList"></div>
+        </div>
+      </header>
+
+      <section class="content">
+        <section class="hero-card reveal">
+          <div class="hero-copy">
+            <span class="eyebrow"><i class="fa-solid fa-sparkles"></i> <span id="todayDate"></span></span>
+            <h1>Welcome back, <span class="gradient">Ayesha</span> 👋</h1>
+            <p>You're 68% through your weekly learning goal. Keep the streak alive — 15 minutes today unlocks your next badge.</p>
+            <div class="hero-progress">
+              <div class="hp-head"><b>Today's learning goal</b><span>42 / 60 min</span></div>
+              <div class="progress"><span style="--v:70%"></span></div>
+            </div>
+            <div class="hero-cta">
+              <button class="btn-primary magnetic" data-action="continue-learning"><i class="fa-solid fa-play"></i> Continue learning</button>
+              <button class="btn-ghost" data-action="schedule">View schedule</button>
+            </div>
+          </div>
+          <div class="hero-art">
+            <div class="art-blob b1"></div>
+            <div class="art-blob b2"></div>
+            <div class="art-card floaty">
+              <div class="ac-row"><i class="fa-solid fa-bolt"></i><b>Streak</b><span>18 days</span></div>
+              <div class="ac-row"><i class="fa-solid fa-trophy"></i><b>Badges</b><span>12</span></div>
+              <div class="ac-row"><i class="fa-solid fa-graduation-cap"></i><b>XP</b><span>4,820</span></div>
+            </div>
+            <div class="art-chip c1 floaty delay-1"><i class="fa-brands fa-react"></i></div>
+            <div class="art-chip c2 floaty delay-2"><i class="fa-brands fa-python"></i></div>
+            <div class="art-chip c3 floaty delay-3"><i class="fa-solid fa-brain"></i></div>
+          </div>
+        </section>
+
+        <section class="stats-grid">
+          <div class="stat-card reveal"><div class="s-icon gold"><i class="fa-solid fa-book"></i></div><div class="s-body"><span class="s-label">Courses enrolled</span><b class="counter" data-count="8">0</b><em class="s-trend up"><i class="fa-solid fa-arrow-up"></i> 2 this month</em></div></div>
+          <div class="stat-card reveal"><div class="s-icon blue"><i class="fa-solid fa-award"></i></div><div class="s-body"><span class="s-label">Certificates</span><b class="counter" data-count="5">0</b><em class="s-trend up"><i class="fa-solid fa-arrow-up"></i> 1 new</em></div></div>
+          <div class="stat-card reveal"><div class="s-icon gold"><i class="fa-regular fa-clock"></i></div><div class="s-body"><span class="s-label">Hours learned</span><b class="counter" data-count="124" data-suffix="h">0</b><em class="s-trend up"><i class="fa-solid fa-arrow-up"></i> +12h wk</em></div></div>
+          <div class="stat-card reveal"><div class="s-icon blue"><i class="fa-solid fa-fire"></i></div><div class="s-body"><span class="s-label">Learning streak</span><b class="counter" data-count="18" data-suffix=" days">0</b><em class="s-trend flat"><i class="fa-solid fa-fire"></i> Personal best</em></div></div>
+        </section>
+
+        <div class="grid-2">
+          <div class="col">
+            <section class="panel reveal continue-card">
+              <div class="panel-head">
+                <div><span class="eyebrow-sm">Pick up where you left off</span><h2>Continue learning</h2></div>
+                <button class="icon-btn ghost" title="Bookmark" data-action="bookmark"><i class="fa-regular fa-bookmark"></i></button>
+              </div>
+              <div class="continue-body">
+                <div class="cont-thumb" data-action="continue-learning" style="cursor:pointer">
+                  <img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800&auto=format&fit=crop" alt="React course" />
+                  <span class="badge-play"><i class="fa-solid fa-play"></i></span>
+                  <span class="cont-tag">Frontend</span>
+                </div>
+                <div class="cont-info">
+                  <h3>React &amp; Next.js — Production Grade</h3>
+                  <p class="cont-instr"><i class="fa-solid fa-chalkboard-user"></i> Sara Ahmed · 42h · 12 modules</p>
+                  <div class="cont-progress">
+                    <div class="cp-top"><b>Progress</b><span>68%</span></div>
+                    <div class="progress"><span style="--v:68%"></span></div>
+                    <div class="cp-meta"><span><i class="fa-solid fa-circle-check"></i> 18 completed</span><span><i class="fa-regular fa-circle"></i> 9 remaining</span></div>
+                  </div>
+                  <div class="cont-actions">
+                    <button class="btn-primary magnetic" data-action="continue-learning"><i class="fa-solid fa-play"></i> Continue</button>
+                    <button class="btn-ghost" data-action="save-course"><i class="fa-regular fa-bookmark"></i> Save</button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel reveal">
+              <div class="panel-head">
+                <div><span class="eyebrow-sm">Enrolled</span><h2>My courses</h2></div>
+                <div class="chip-tabs" id="courseTabs">
+                  <button class="chip active" data-filter="all">All</button>
+                  <button class="chip" data-filter="progress">In progress</button>
+                  <button class="chip" data-filter="completed">Completed</button>
+                </div>
+              </div>
+              <div class="courses-grid" id="coursesGrid"></div>
+              <p id="coursesEmpty" style="display:none;text-align:center;padding:24px;color:var(--muted);font-size:13px">No courses match your search.</p>
+            </section>
+
+
+            <section class="panel reveal">
+              <div class="panel-head"><div><span class="eyebrow-sm">Achievements</span><h2>Certificates</h2></div><a href="#" class="link" data-nav="Certificates">View all</a></div>
+              <div class="cert-grid" id="certGrid"></div>
+            </section>
+
+            <section class="panel reveal">
+              <div class="panel-head">
+                <div><span class="eyebrow-sm">For you</span><h2>Recommended courses</h2></div>
+                <div class="slider-nav"><button class="icon-btn" id="recPrev"><i class="fa-solid fa-arrow-left"></i></button><button class="icon-btn" id="recNext"><i class="fa-solid fa-arrow-right"></i></button></div>
+              </div>
+              <div class="rec-slider"><div class="rec-track" id="recTrack"></div></div>
+            </section>
+          </div>
+
+          <aside class="col side">
+            <section class="panel reveal profile-card">
+              <div class="pc-cover"></div>
+              <img class="pc-avatar" src="https://i.pravatar.cc/160?img=47" alt="Ayesha" />
+              <h3>Ayesha Khan</h3>
+              <span class="pc-email">ayesha.khan@technova.io</span>
+              <div class="pc-tags"><span class="tag gold">Intermediate</span><span class="tag blue">Frontend</span></div>
+              <p class="pc-goal"><b>Current goal:</b> Ship a full-stack SaaS by December.</p>
+              <button class="btn-ghost full" data-action="edit-profile">Edit profile</button>
+            </section>
+
+            <section class="panel reveal">
+              <div class="panel-head"><div><span class="eyebrow-sm">This week</span><h2>Upcoming live classes</h2></div><button class="icon-btn ghost" title="Calendar" data-action="calendar"><i class="fa-regular fa-calendar"></i></button></div>
+              <ul class="timeline" id="liveList"></ul>
+            </section>
+
+            <section class="panel reveal">
+              <div class="panel-head"><div><span class="eyebrow-sm">Latest</span><h2>Recent activity</h2></div></div>
+              <ul class="activity" id="activityList"></ul>
+            </section>
+
+            <section class="panel reveal">
+              <div class="panel-head"><div><span class="eyebrow-sm">Inbox</span><h2>Notifications</h2></div><a href="#" class="link" id="seeAllNotif">See all</a></div>
+              <ul class="notif-mini" id="notifMini"></ul>
+            </section>
+          </aside>
+        </div>
+
+        <footer class="foot">
+          <span>© <span id="year"></span> TechNova Academy. All rights reserved.</span>
+          <nav><a href="#" data-action="privacy">Privacy</a><a href="#" data-action="terms">Terms</a><a href="#" data-action="support">Support</a></nav>
+        </footer>
+      </section>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- ============ TOAST ============ -->
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script src="../js/stdashboard.js" defer></script>
+</body>
+</html>
+

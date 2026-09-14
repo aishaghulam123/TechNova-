@@ -1,11 +1,1029 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Nova</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TechNova — Premium Tech Education, from curious to hired</title>
+<meta name="description" content="TechNova is a premium learning platform for developers: live cohorts, real GitHub projects, mentorship and a job guarantee." />
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+
+<link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-    <h1>Tech nova</h1>
+
+<!-- Custom cursor -->
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- Progress bar -->
+<div class="scroll-progress"><span></span></div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><i class="ri-flashlight-fill"></i></span>
+      <span class="brand-text">Tech<span>Nova</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#courses">Courses</a>
+      <a href="#analytics">Analytics</a>
+      <a href="#presence">Presence</a>
+      <a href="#stories">Stories</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+   
+      <button class="button">
+        
+  <span class="button-content">Get Started <i class="ri-arrow-right-up-line"></i></span>
+</button> 
+    
+    <button class="nav-toggle" aria-label="Menu"><i class="ri-menu-line"></i></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero" data-theme="dark">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="grid-bg"></div>
+
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" data-aos="fade-up">A new era of learning</span>
+      <h1 class="display" data-aos="fade-up" data-aos-delay="80">
+        From <span class="text-gradient">curious</span> to <br/>
+        confidently <span class="underline-gold">hired</span>.
+      </h1>
+      <p class="lead" data-aos="fade-up" data-aos-delay="160">
+        TechNova pairs live cohorts, real GitHub projects and 1‑on‑1 mentorship
+        into one relentless path toward a career in tech.
+      </p>
+      <div class="hero-cta" data-aos="fade-up" data-aos-delay="240">
+        <a href="#courses" class="btn btn-liquid magnetic" data-magnetic>
+          Explore courses <i class="ri-arrow-right-line"></i>
+        </a>
+        <a href="#analytics" class="btn btn-ghost-gold magnetic" data-magnetic>
+          <i class="ri-play-circle-line"></i> Watch platform tour
+        </a>
+      </div>
+      <div class="hero-meta" data-aos="fade-up" data-aos-delay="320">
+        <div><strong>12,480+</strong><span>Active learners</span></div>
+        <div><strong>96%</strong><span>Job placement</span></div>
+        <div><strong>4.9<i class="ri-star-fill"></i></strong><span>Average rating</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" data-aos="zoom-in" data-aos-delay="200">
+      <div class="orbit">
+        <span class="orbit-ring r1"></span>
+        <span class="orbit-ring r2"></span>
+        <span class="orbit-ring r3"></span>
+
+        <div class="orb-center">
+          <i class="ri-code-s-slash-line"></i>
+        </div>
+
+        <span class="chip chip-a floaty"><i class="ri-reactjs-line"></i> React</span>
+        <span class="chip chip-b floaty"><i class="ri-nodejs-line"></i> Node</span>
+        <span class="chip chip-c floaty"><i class="ri-database-2-line"></i> SQL</span>
+        <span class="chip chip-d floaty"><i class="ri-cloud-line"></i> Cloud</span>
+        <span class="chip chip-e floaty"><i class="ri-brain-line"></i> AI</span>
+
+        <div class="mini-card mini-1">
+          <div class="mini-title">Today's cohort</div>
+          <div class="mini-body">
+            <span class="dot"></span> Live in 12 minutes
+          </div>
+        </div>
+        <div class="mini-card mini-2">
+          <div class="mini-title">Streak</div>
+          <div class="mini-body big">37<span> days</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<section class="marquee-wrap" data-theme="dark">
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Building the next 100,000 engineers</span><i class="ri-star-s-fill"></i>
+      <span>Live cohorts every Monday</span><i class="ri-star-s-fill"></i>
+      <span>Ship real GitHub projects</span><i class="ri-star-s-fill"></i>
+      <span>Job guarantee or tuition back</span><i class="ri-star-s-fill"></i>
+      <span>Backed by senior engineers from FAANG</span><i class="ri-star-s-fill"></i>
+      <span>Building the next 100,000 engineers</span><i class="ri-star-s-fill"></i>
+      <span>Live cohorts every Monday</span><i class="ri-star-s-fill"></i>
+      <span>Ship real GitHub projects</span><i class="ri-star-s-fill"></i>
+      <span>Job guarantee or tuition back</span><i class="ri-star-s-fill"></i>
+      <span>Backed by senior engineers from FAANG</span><i class="ri-star-s-fill"></i>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="section" id="stats">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow-light">By the numbers</span>
+        <h2 class="h2">A platform that scales <br/> with your ambition.</h2>
+      </div>
+      <p class="section-lead">
+        Every metric is a graduate, a shipped project, or a career changed —
+        not a vanity number. Live across 42 countries.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card tilt ui-card" data-tilt>
+        <div class="stat-head">
+          <div class="stat-icon blue"><i class="ri-user-3-line"></i></div>
+          <span class="live-pill"><span class="pulse-dot"></span> LIVE</span>
+        </div>
+        <div class="stat-num" data-count="12480" data-suffix="+">0</div>
+        <div class="stat-label">Active learners</div>
+        <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <defs><linearGradient id="gb" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#2F80ED" stop-opacity=".4"/><stop offset="100%" stop-color="#2F80ED" stop-opacity="0"/></linearGradient></defs>
+          <polygon points="0,40 0,24 14,18 28,22 42,12 56,16 70,6 84,10 100,3 100,40" fill="url(#gb)"/>
+          <polyline points="0,24 14,18 28,22 42,12 56,16 70,6 84,10 100,3" fill="none" stroke="#2F80ED" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="stat-card tilt ui-card" data-tilt>
+        <div class="stat-head">
+          <div class="stat-icon gold"><i class="ri-graduation-cap-line"></i></div>
+          <span class="live-pill"><span class="pulse-dot"></span> LIVE</span>
+        </div>
+        <div class="stat-num" data-count="38200" data-suffix="">0</div>
+        <div class="stat-label">Courses completed</div>
+        <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <defs><linearGradient id="gg" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#FFAA00" stop-opacity=".4"/><stop offset="100%" stop-color="#FFAA00" stop-opacity="0"/></linearGradient></defs>
+          <polygon points="0,40 0,30 14,22 28,14 42,20 56,8 70,12 84,4 100,2 100,40" fill="url(#gg)"/>
+          <polyline points="0,30 14,22 28,14 42,20 56,8 70,12 84,4 100,2" fill="none" stroke="#FFAA00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="stat-card tilt ui-card" data-tilt>
+        <div class="stat-head">
+          <div class="stat-icon blue"><i class="ri-award-line"></i></div>
+          <span class="live-pill"><span class="pulse-dot"></span> LIVE</span>
+        </div>
+        <div class="stat-num" data-count="96" data-suffix="%">0</div>
+        <div class="stat-label">Job placements</div>
+        <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <polygon points="0,40 0,28 14,26 28,22 42,20 56,14 70,10 84,6 100,3 100,40" fill="url(#gb)"/>
+          <polyline points="0,28 14,26 28,22 42,20 56,14 70,10 84,6 100,3" fill="none" stroke="#2F80ED" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="stat-card tilt ui-card" data-tilt>
+        <div class="stat-head">
+          <div class="stat-icon gold"><i class="ri-earth-line"></i></div>
+          <span class="live-pill"><span class="pulse-dot"></span> LIVE</span>
+        </div>
+        <div class="stat-num" data-count="42" data-suffix="">0</div>
+        <div class="stat-label">Countries reached</div>
+        <svg class="spark" viewBox="0 0 100 40" preserveAspectRatio="none">
+          <polygon points="0,40 0,36 14,32 28,26 42,22 56,18 70,14 84,10 100,8 100,40" fill="url(#gg)"/>
+          <polyline points="0,36 14,32 28,26 42,22 56,18 70,14 84,10 100,8" fill="none" stroke="#FFAA00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="section features" id="features" data-theme="dark">
+  <div class="blob blob-3"></div>
+  <div class="container features-grid">
+    <div class="features-visual" data-aos="fade-right">
+      <div class="fv-frame">
+        <div class="fv-topbar">
+          <span></span><span></span><span></span>
+          <em>technova / dashboard</em>
+        </div>
+        <div class="fv-body">
+          <div class="fv-row">
+            <div class="fv-tile">
+              <div class="fv-tile-label">Weekly XP</div>
+              <div class="fv-tile-val">2,480</div>
+              <div class="fv-bar"><span style="width:78%"></span></div>
+            </div>
+            <div class="fv-tile">
+              <div class="fv-tile-label">Streak</div>
+              <div class="fv-tile-val">37d</div>
+              <div class="fv-bar gold"><span style="width:64%"></span></div>
+            </div>
+          </div>
+          <div class="fv-chart">
+            <svg viewBox="0 0 300 120" preserveAspectRatio="none">
+              <defs><linearGradient id="fvg" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#FFAA00" stop-opacity=".5"/><stop offset="100%" stop-color="#FFAA00" stop-opacity="0"/></linearGradient></defs>
+              <polygon points="0,120 0,80 30,70 60,90 90,55 120,65 150,40 180,50 210,25 240,35 270,15 300,25 300,120" fill="url(#fvg)"/>
+              <polyline points="0,80 30,70 60,90 90,55 120,65 150,40 180,50 210,25 240,35 270,15 300,25" fill="none" stroke="#FFAA00" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="fv-list">
+            <div><i class="ri-checkbox-circle-fill"></i> Ship auth module <em>+120 XP</em></div>
+            <div><i class="ri-checkbox-circle-fill"></i> Review PR #248 <em>+40 XP</em></div>
+            <div><i class="ri-loader-4-line"></i> Live cohort at 6pm <em>upcoming</em></div>
+          </div>
+        </div>
+      </div>
+      <div class="fv-badge">
+        <div class="fv-badge-label">This week</div>
+        <div class="fv-badge-val">+38% <span>completion</span></div>
+      </div>
+    </div>
+
+    <div class="features-copy">
+      <span class="eyebrow" data-aos="fade-up">Platform features</span>
+      <h2 class="h2 light" data-aos="fade-up" data-aos-delay="80">
+        Everything you need <br/> to go from curious to <span class="underline-gold">hired</span>.
+      </h2>
+      <p class="lead muted" data-aos="fade-up" data-aos-delay="160">
+        Six pillars that make TechNova feel less like a course and more like
+        your first day at a great engineering team.
+      </p>
+
+      <div class="feature-grid">
+        <div class="feature-card tilt ui-card" data-tilt data-aos="fade-up">
+          <div class="fc-icon"><i class="ri-live-line"></i></div>
+          <h3>Live cohort sessions</h3>
+          <p>Weekly workshops with senior engineers. Recordings included.</p>
+          <span class="fc-num">01</span>
+        </div>
+        <div class="feature-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="80">
+          <div class="fc-icon"><i class="ri-github-fill"></i></div>
+          <h3>Real GitHub projects</h3>
+          <p>Ship a portfolio recruiters actually open — not tutorial clones.</p>
+          <span class="fc-num">02</span>
+        </div>
+        <div class="feature-card tilt ui-card" data-tilt data-aos="fade-up">
+          <div class="fc-icon"><i class="ri-user-star-line"></i></div>
+          <h3>1‑on‑1 mentorship</h3>
+          <p>Paired with a mentor in your target role. Weekly reviews.</p>
+          <span class="fc-num">03</span>
+        </div>
+        <div class="feature-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="80">
+          <div class="fc-icon"><i class="ri-line-chart-line"></i></div>
+          <h3>Progress analytics</h3>
+          <p>See what you know, what's next, and how you compare.</p>
+          <span class="fc-num">04</span>
+        </div>
+        <div class="feature-card tilt ui-card" data-tilt data-aos="fade-up">
+          <div class="fc-icon"><i class="ri-shield-check-line"></i></div>
+          <h3>Job guarantee</h3>
+          <p>Placed within 6 months of graduation or tuition back.</p>
+          <span class="fc-num">05</span>
+        </div>
+        <div class="feature-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="80">
+          <div class="fc-icon"><i class="ri-sparkling-2-line"></i></div>
+          <h3>AI study copilot</h3>
+          <p>A personal tutor that answers, quizzes and debugs 24/7.</p>
+          <span class="fc-num">06</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COURSES ============ -->
+<section class="section" id="courses">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow-light">Signature programs</span>
+        <h2 class="h2">Six tracks. One unfair advantage.</h2>
+      </div>
+      <p class="section-lead">
+        Every track ships a real product, is mentored by a senior engineer,
+        and ends with a hiring sprint into our partner network.
+      </p>
+    </div>
+
+    <div class="course-grid">
+      <!-- 1 -->
+      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up">
+        <div class="cc-media cc-gradient-1">
+          <i class="ri-code-box-line cc-glyph"></i>
+          <span class="cc-tag">Popular</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-meta"><i class="ri-time-line"></i> 24 weeks · Live</div>
+          <h3>Full‑Stack Web Engineering</h3>
+          <p>React, Node, Postgres and deployment on the edge. Ship four production apps.</p>
+          <div class="cc-foot">
+            <span class="cc-price">$1,890</span>
+            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="80">
+        <div class="cc-media cc-gradient-2">
+          <i class="ri-brain-line cc-glyph"></i>
+          <span class="cc-tag">New</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-meta"><i class="ri-time-line"></i> 20 weeks · Live</div>
+          <h3>AI &amp; Machine Learning</h3>
+          <p>From PyTorch fundamentals to shipping a RAG system with LLM evaluations.</p>
+          <div class="cc-foot">
+            <span class="cc-price">$2,190</span>
+            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="160">
+        <div class="cc-media cc-gradient-3">
+          <i class="ri-cloud-line cc-glyph"></i>
+        </div>
+        <div class="cc-body">
+          <div class="cc-meta"><i class="ri-time-line"></i> 16 weeks · Live</div>
+          <h3>Cloud &amp; DevOps</h3>
+          <p>AWS, Kubernetes, Terraform. Design, deploy and observe production systems.</p>
+          <div class="cc-foot">
+            <span class="cc-price">$1,690</span>
+            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up">
+        <div class="cc-media cc-gradient-4">
+          <i class="ri-shield-keyhole-line cc-glyph"></i>
+        </div>
+        <div class="cc-body">
+          <div class="cc-meta"><i class="ri-time-line"></i> 18 weeks · Live</div>
+          <h3>Cybersecurity</h3>
+          <p>Offensive and defensive labs, threat modeling, incident response playbooks.</p>
+          <div class="cc-foot">
+            <span class="cc-price">$1,790</span>
+            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="80">
+        <div class="cc-media cc-gradient-5">
+          <i class="ri-palette-line cc-glyph"></i>
+          <span class="cc-tag">Design</span>
+        </div>
+        <div class="cc-body">
+          <div class="cc-meta"><i class="ri-time-line"></i> 14 weeks · Live</div>
+          <h3>Product &amp; UX Design</h3>
+          <p>Figma to shipped interface. Design systems, motion, research and handoff.</p>
+          <div class="cc-foot">
+            <span class="cc-price">$1,490</span>
+            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="160">
+        <div class="cc-media cc-gradient-6">
+          <i class="ri-bar-chart-2-line cc-glyph"></i>
+        </div>
+        <div class="cc-body">
+          <div class="cc-meta"><i class="ri-time-line"></i> 16 weeks · Live</div>
+          <h3>Data Analytics</h3>
+          <p>SQL, dbt, Python and dashboards leaders trust. End‑to‑end analytics stack.</p>
+          <div class="cc-foot">
+            <span class="cc-price">$1,590</span>
+            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANALYTICS ============ -->
+<section class="section analytics" id="analytics" data-theme="dark">
+  <div class="blob blob-4"></div>
+  <div class="container">
+    <div class="section-head light">
+      <div>
+        <span class="eyebrow">Live analytics</span>
+        <h2 class="h2 light">Progress you can <span class="text-gradient">actually see</span>.</h2>
+      </div>
+      <p class="section-lead muted">
+        Every learner gets a real dashboard — the same one our mentors use to plan
+        weekly sessions and unblock careers.
+      </p>
+    </div>
+
+    <div class="analytics-grid">
+      <div class="a-card big" data-aos="fade-up">
+        <div class="a-head">
+          <div>
+            <div class="a-title">Weekly engagement</div>
+            <div class="a-sub">Sessions completed vs planned</div>
+          </div>
+          <div class="a-legend">
+            <span><em class="dot gold"></em>Completed</span>
+            <span><em class="dot blue"></em>Planned</span>
+          </div>
+        </div>
+        <svg class="a-chart" viewBox="0 0 600 240" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="ag" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#FFAA00" stop-opacity=".45"/>
+              <stop offset="100%" stop-color="#FFAA00" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g stroke="rgba(255,255,255,.06)">
+            <line x1="0" y1="60" x2="600" y2="60"/>
+            <line x1="0" y1="120" x2="600" y2="120"/>
+            <line x1="0" y1="180" x2="600" y2="180"/>
+          </g>
+          <polygon points="0,240 0,180 75,150 150,170 225,120 300,140 375,90 450,110 525,60 600,80 600,240" fill="url(#ag)"/>
+          <polyline points="0,180 75,150 150,170 225,120 300,140 375,90 450,110 525,60 600,80" fill="none" stroke="#FFAA00" stroke-width="2.5"/>
+          <polyline points="0,200 75,190 150,185 225,170 300,160 375,150 450,135 525,120 600,110" fill="none" stroke="#2F80ED" stroke-width="2.5" stroke-dasharray="4 5"/>
+        </svg>
+      </div>
+
+      <div class="a-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="a-title">Skill mastery</div>
+        <div class="a-sub">Top 4 tracked skills</div>
+        <div class="a-skills">
+          <div><span>React</span><em class="bar"><i style="--w:92%"></i></em><b>92%</b></div>
+          <div><span>Node.js</span><em class="bar"><i style="--w:78%"></i></em><b>78%</b></div>
+          <div><span>SQL</span><em class="bar"><i style="--w:66%"></i></em><b>66%</b></div>
+          <div><span>System Design</span><em class="bar"><i style="--w:54%"></i></em><b>54%</b></div>
+        </div>
+      </div>
+
+      <div class="a-card ring-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="a-title">Overall progress</div>
+        <div class="a-sub">Cohort 24 · Winter</div>
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120" class="ring">
+            <circle cx="60" cy="60" r="52" stroke="rgba(255,255,255,.08)" stroke-width="10" fill="none"/>
+            <circle cx="60" cy="60" r="52" stroke="url(#rg)" stroke-width="10" fill="none"
+                    stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="82"
+                    transform="rotate(-90 60 60)"/>
+            <defs><linearGradient id="rg" x1="0" x2="1" y1="0" y2="1"><stop offset="0%" stop-color="#FFAA00"/><stop offset="100%" stop-color="#2F80ED"/></linearGradient></defs>
+          </svg>
+          <div class="ring-val"><strong>74%</strong><span>on track</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NATIONWIDE PRESENCE (PAKISTAN) ============ -->
+<section class="section presence nationwide" id="presence">
+  <div class="container">
+    <div class="presence-grid">
+
+      <!-- LEFT: Copy + Statistics -->
+      <div class="presence-copy">
+        <span class="eyebrow-light presence-eyebrow">Nationwide reach</span>
+        <h2 class="h2 presence-heading">Nationwide Presence Across Pakistan</h2>
+        <p class="presence-desc">
+          TechNova Academy is empowering thousands of students from every major city
+          through live online education — expert mentors, real projects, and career
+          outcomes that travel with you, wherever you are.
+        </p>
+
+        <div class="presence-stats-grid">
+          <article class="presence-stat-card ui-card" data-presence-stat>
+            <div class="psc-icon"><i class="ri-user-3-line"></i></div>
+            <div class="psc-num" data-count="18500" data-suffix="+">0</div>
+            <div class="psc-label">Students Enrolled</div>
+          </article>
+          <article class="presence-stat-card ui-card" data-presence-stat>
+            <div class="psc-icon"><i class="ri-map-pin-2-line"></i></div>
+            <div class="psc-num" data-count="10" data-suffix="">0</div>
+            <div class="psc-label">Cities Covered</div>
+          </article>
+          <article class="presence-stat-card ui-card" data-presence-stat>
+            <div class="psc-icon"><i class="ri-live-line"></i></div>
+            <div class="psc-num" data-count="340" data-suffix="+">0</div>
+            <div class="psc-label">Live Classes</div>
+          </article>
+          <article class="presence-stat-card ui-card" data-presence-stat>
+            <div class="psc-icon"><i class="ri-award-line"></i></div>
+            <div class="psc-num" data-count="96" data-suffix="%">0</div>
+            <div class="psc-label">Success Rate</div>
+          </article>
+        </div>
+      </div>
+
+      <!-- RIGHT: Interactive Map + Analytics -->
+      <div class="presence-visual">
+        <div class="map-stage" id="mapStage">
+          <div class="map-glass" id="mapTilt">
+            <svg class="pakistan-map" id="pakistanMap" viewBox="0 0 400 500" aria-label="Interactive map of Pakistan">
+              <defs>
+                <linearGradient id="pakFill" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#f8f9fc"/>
+                  <stop offset="100%" stop-color="#eef1f7"/>
+                </linearGradient>
+                <linearGradient id="pakStroke" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FFAA00"/>
+                  <stop offset="100%" stop-color="#2F80ED"/>
+                </linearGradient>
+                <linearGradient id="connGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#FFAA00"/>
+                  <stop offset="100%" stop-color="#2F80ED"/>
+                </linearGradient>
+                <filter id="pinGlow" x="-80%" y="-80%" width="260%" height="260%">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <filter id="hqGlow" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              <path class="pak-outline" d="M 175 38
+                C 210 32, 248 42, 278 62
+                C 302 78, 318 102, 328 128
+                C 338 158, 342 188, 338 218
+                C 334 248, 322 278, 308 306
+                C 292 338, 268 368, 238 392
+                C 212 412, 182 426, 152 432
+                C 122 436, 92 428, 72 408
+                C 52 388, 42 360, 48 330
+                C 54 300, 68 272, 82 244
+                C 96 216, 108 188, 118 160
+                C 128 132, 142 108, 158 82
+                C 164 68, 168 52, 175 38 Z" fill="url(#pakFill)" stroke="url(#pakStroke)" stroke-width="2.2"/>
+
+              <path class="pak-region" d="M 175 38 C 210 32, 248 42, 278 62 C 268 88, 252 112, 230 128 C 208 142, 182 148, 158 138 C 142 128, 128 108, 118 82 C 128 62, 150 44, 175 38 Z" opacity=".35"/>
+              <path class="pak-region" d="M 158 138 C 182 148, 208 142, 230 128 C 248 168, 258 208, 252 248 C 238 278, 212 302, 182 312 C 152 318, 122 308, 98 286 C 82 262, 72 232, 82 200 C 96 168, 124 148, 158 138 Z" opacity=".22"/>
+              <path class="pak-region" d="M 182 312 C 212 302, 238 278, 252 248 C 268 288, 272 328, 258 364 C 242 396, 212 418, 178 426 C 148 432, 118 422, 98 398 C 88 372, 92 342, 108 318 C 128 302, 154 308, 182 312 Z" opacity=".28"/>
+
+              <g class="hq-marker" transform="translate(218, 148)">
+                <circle class="hq-pulse" r="18" fill="rgba(47,128,237,.18)"/>
+                <circle class="hq-core" r="9" fill="#2F80ED" filter="url(#hqGlow)"/>
+                <circle r="4" fill="#fff"/>
+                <text class="hq-label" y="-24">TechNova HQ</text>
+              </g>
+
+              <g class="conn-lines" id="connLines" fill="none" stroke="url(#connGrad)" stroke-width="1.6" stroke-linecap="round"></g>
+              <g class="city-pins" id="cityPins"></g>
+            </svg>
+          </div>
+
+          <div class="map-tooltip" id="mapTooltip" role="tooltip" aria-hidden="true">
+            <strong class="mt-city">Karachi</strong>
+            <span class="mt-students"><i class="ri-user-line"></i> <em>2,450</em> Students</span>
+            <span class="mt-courses"><i class="ri-book-open-line"></i> <em>35</em> Courses</span>
+            <span class="mt-success"><i class="ri-trophy-line"></i> <em>96%</em> Success Rate</span>
+          </div>
+        </div>
+
+        <div class="presence-charts" id="presenceCharts">
+          <div class="pch-card glass-lite ui-card">
+            <div class="pch-head">
+              <span class="pch-title">Student Growth</span>
+              <span class="pch-badge">+24%</span>
+            </div>
+            <canvas id="chartGrowth" aria-label="Student growth chart"></canvas>
+          </div>
+          <div class="pch-card glass-lite ui-card">
+            <div class="pch-head">
+              <span class="pch-title">Course Completion</span>
+            </div>
+            <canvas id="chartCompletion" aria-label="Course completion chart"></canvas>
+          </div>
+          <div class="pch-card glass-lite ui-card">
+            <div class="pch-head">
+              <span class="pch-title">Enrollment Distribution</span>
+            </div>
+            <canvas id="chartEnrollment" aria-label="Enrollment distribution chart"></canvas>
+          </div>
+          <div class="pch-card glass-lite ui-card">
+            <div class="pch-head">
+              <span class="pch-title">Weekly Active Students</span>
+            </div>
+            <canvas id="chartWeekly" aria-label="Weekly active students chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUCCESS STORIES ============ -->
+<section class="section stories" id="stories" data-theme="dark">
+  <div class="container">
+    <div class="section-head light">
+      <div>
+        <span class="eyebrow">Success stories</span>
+        <h2 class="h2 light">Real outcomes. Real people.</h2>
+      </div>
+      <div class="story-nav">
+        <button class="s-btn" id="s-prev" aria-label="Previous"><i class="ri-arrow-left-line"></i></button>
+        <button class="s-btn" id="s-next" aria-label="Next"><i class="ri-arrow-right-line"></i></button>
+      </div>
+    </div>
+
+    <div class="story-viewport">
+      <div class="story-track" id="storyTrack">
+        <article class="story-card ui-card">
+          <div class="s-media s-grad-1"><span class="s-role">Frontend Engineer</span></div>
+          <div class="s-body">
+            <div class="s-quote"><i class="ri-double-quotes-l"></i> The mentorship was ruthless in the best way. I went from tutorial hell to shipping a real product in eight weeks.</div>
+            <div class="s-person">
+              <div class="s-avatar" style="background:linear-gradient(135deg,#FFAA00,#ff7a00)">AK</div>
+              <div>
+                <strong>Ayesha Khan</strong>
+                <span>Hired at Vercel · +142% salary</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card ui-card">
+          <div class="s-media s-grad-2"><span class="s-role">ML Engineer</span></div>
+          <div class="s-body">
+            <div class="s-quote"><i class="ri-double-quotes-l"></i> The AI track felt like an apprenticeship. My mentor reviewed every model I shipped — that changed everything.</div>
+            <div class="s-person">
+              <div class="s-avatar" style="background:linear-gradient(135deg,#2F80ED,#7a5cff)">DR</div>
+              <div>
+                <strong>Daniel Rivera</strong>
+                <span>Hired at Anthropic · +180% salary</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card ui-card">
+          <div class="s-media s-grad-3"><span class="s-role">Cloud Engineer</span></div>
+          <div class="s-body">
+            <div class="s-quote"><i class="ri-double-quotes-l"></i> I finally understand production. Not just deploy — but observe, scale, and sleep at night.</div>
+            <div class="s-person">
+              <div class="s-avatar" style="background:linear-gradient(135deg,#FFAA00,#2F80ED)">MN</div>
+              <div>
+                <strong>Mei Nakamura</strong>
+                <span>Hired at Cloudflare · +95% salary</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card ui-card">
+          <div class="s-media s-grad-4"><span class="s-role">Product Designer</span></div>
+          <div class="s-body">
+            <div class="s-quote"><i class="ri-double-quotes-l"></i> TechNova taught me to think like an engineer while designing. My portfolio landed four offers.</div>
+            <div class="s-person">
+              <div class="s-avatar" style="background:linear-gradient(135deg,#7a5cff,#FFAA00)">JO</div>
+              <div>
+                <strong>Jamal Obi</strong>
+                <span>Hired at Linear · +120% salary</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="story-card ui-card">
+          <div class="s-media s-grad-5"><span class="s-role">Security Analyst</span></div>
+          <div class="s-body">
+            <div class="s-quote"><i class="ri-double-quotes-l"></i> Went from IT support to a security role at a Fortune 500 in five months. The labs are unreal.</div>
+            <div class="s-person">
+              <div class="s-avatar" style="background:linear-gradient(135deg,#2F80ED,#FFAA00)">SP</div>
+              <div>
+                <strong>Sofia Petrova</strong>
+                <span>Hired at Stripe · +160% salary</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS (MARQUEE COLUMNS) ============ -->
+<section class="section testimonials" id="testimonials">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow-light">Loved by learners</span>
+      <h2 class="h2">Twelve thousand voices <br/>can't all be wrong.</h2>
+    </div>
+  </div>
+
+  <div class="tw-wrap">
+    <div class="tw-col">
+      <div class="tw-track up">
+        <!-- cards duplicated for seamless loop -->
+        <div class="tw-card ui-card"><p>"The cohort energy is unreal. It felt like I was training with a team, not staring at a Udemy tab."</p><div class="tw-person"><span class="a a1">HB</span><div><b>Hannah B.</b><em>Full‑Stack · Cohort 22</em></div></div></div>
+        <div class="tw-card ui-card"><p>"Best money I've ever spent. The job guarantee sealed it, but the mentorship kept me here."</p><div class="tw-person"><span class="a a2">OL</span><div><b>Owen L.</b><em>Cloud · Cohort 19</em></div></div></div>
+        <div class="tw-card ui-card"><p>"I ship code now. That's the whole review."</p><div class="tw-person"><span class="a a3">RT</span><div><b>Rita T.</b><em>AI · Cohort 24</em></div></div></div>
+        <!-- repeat -->
+        <div class="tw-card ui-card"><p>"The cohort energy is unreal. It felt like I was training with a team, not staring at a Udemy tab."</p><div class="tw-person"><span class="a a1">HB</span><div><b>Hannah B.</b><em>Full‑Stack · Cohort 22</em></div></div></div>
+        <div class="tw-card ui-card"><p>"Best money I've ever spent. The job guarantee sealed it, but the mentorship kept me here."</p><div class="tw-person"><span class="a a2">OL</span><div><b>Owen L.</b><em>Cloud · Cohort 19</em></div></div></div>
+        <div class="tw-card ui-card"><p>"I ship code now. That's the whole review."</p><div class="tw-person"><span class="a a3">RT</span><div><b>Rita T.</b><em>AI · Cohort 24</em></div></div></div>
+      </div>
+    </div>
+
+    <div class="tw-col">
+      <div class="tw-track down">
+        <div class="tw-card ui-card"><p>"The analytics dashboard was addictive. Watching skills fill up made me study more, not less."</p><div class="tw-person"><span class="a a4">KM</span><div><b>Kenji M.</b><em>Data · Cohort 21</em></div></div></div>
+        <div class="tw-card ui-card"><p>"My mentor became my career coach, code reviewer and biggest hype‑person. Priceless."</p><div class="tw-person"><span class="a a5">AV</span><div><b>Amara V.</b><em>Design · Cohort 23</em></div></div></div>
+        <div class="tw-card ui-card"><p>"Ten years in another field. TechNova rewired how I learn."</p><div class="tw-person"><span class="a a6">PS</span><div><b>Priya S.</b><em>Security · Cohort 20</em></div></div></div>
+        <div class="tw-card ui-card"><p>"The analytics dashboard was addictive. Watching skills fill up made me study more, not less."</p><div class="tw-person"><span class="a a4">KM</span><div><b>Kenji M.</b><em>Data · Cohort 21</em></div></div></div>
+        <div class="tw-card ui-card"><p>"My mentor became my career coach, code reviewer and biggest hype‑person. Priceless."</p><div class="tw-person"><span class="a a5">AV</span><div><b>Amara V.</b><em>Design · Cohort 23</em></div></div></div>
+        <div class="tw-card ui-card"><p>"Ten years in another field. TechNova rewired how I learn."</p><div class="tw-person"><span class="a a6">PS</span><div><b>Priya S.</b><em>Security · Cohort 20</em></div></div></div>
+      </div>
+    </div>
+
+    <div class="tw-col hide-md">
+      <div class="tw-track up slow">
+        <div class="tw-card ui-card"><p>"I studied at TechNova between night shifts. I now build the tools I used to complain about."</p><div class="tw-person"><span class="a a7">LO</span><div><b>Liam O.</b><em>Full‑Stack · Cohort 18</em></div></div></div>
+        <div class="tw-card ui-card"><p>"The community alone is worth the tuition."</p><div class="tw-person"><span class="a a8">EN</span><div><b>Elena N.</b><em>AI · Cohort 25</em></div></div></div>
+        <div class="tw-card ui-card"><p>"Went from junior to senior in 14 months after graduating."</p><div class="tw-person"><span class="a a9">TW</span><div><b>Tunde W.</b><em>Cloud · Cohort 22</em></div></div></div>
+        <div class="tw-card ui-card"><p>"I studied at TechNova between night shifts. I now build the tools I used to complain about."</p><div class="tw-person"><span class="a a7">LO</span><div><b>Liam O.</b><em>Full‑Stack · Cohort 18</em></div></div></div>
+        <div class="tw-card ui-card"><p>"The community alone is worth the tuition."</p><div class="tw-person"><span class="a a8">EN</span><div><b>Elena N.</b><em>AI · Cohort 25</em></div></div></div>
+        <div class="tw-card ui-card"><p>"Went from junior to senior in 14 months after graduating."</p><div class="tw-person"><span class="a a9">TW</span><div><b>Tunde W.</b><em>Cloud · Cohort 22</em></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ///////////////////////////////////// -->
+ <!-- ============ MEET THE TRAINERS ============ -->
+<section class="section trainers" id="trainers">
+  <div class="container">
+    <div class="section-head light">
+      <div>
+        <span class="eyebrow">Industry Experts</span>
+        <h2 class="h2 light">Meet the <span class="text-gradient">Trainers</span>.</h2>
+      </div>
+    </div>
+
+    <div class="trainers-grid">
+      
+      <!-- Trainer Card 1 -->
+      <div class="card">
+        <button class="mail">
+          <svg class="lucide lucide-mail" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <rect rx="2" y="4" x="2" height="16" width="20"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+        </button>
+        <div class="profile-pic">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" alt="Zain Malik">
+        </div>
+        <div class="bottom">
+          <div class="content">
+            <span class="name">Zain Malik</span>
+            <span class="about-me">Full‑Stack Web Engineer with over 8 years of core experience building high-scale architecture at top tier tech firms.</span>
+          </div>
+          <div class="bottom-bottom">
+            <div class="social-links-container">
+              <svg viewBox="0 0 16 15.999" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path transform="translate(6 598)" d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z"></path></svg>
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+              <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+            </div>
+            <button class="Tbutton">Contact Me</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trainer Card 2 -->
+      <div class="card">
+        <button class="mail">
+          <svg class="lucide lucide-mail" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><rect rx="2" y="4" x="2" height="16" width="20"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        </button>
+        <div class="profile-pic">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400" alt="Amina Jamil">
+        </div>
+        <div class="bottom">
+          <div class="content">
+            <span class="name">Amina Jamil</span>
+            <span class="about-me">AI &amp; Machine Learning Specialist. Former Research Scientist teaching deep learning and advanced neural networks.</span>
+          </div>
+          <div class="bottom-bottom">
+            <div class="social-links-container">
+              <svg viewBox="0 0 16 15.999" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path transform="translate(6 598)" d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z"></path></svg>
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+              <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+            </div>
+            <button class="Tbutton">Contact Me</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trainer Card 3 (Naya Added) -->
+      <div class="card">
+        <button class="mail">
+          <svg class="lucide lucide-mail" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><rect rx="2" y="4" x="2" height="16" width="20"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        </button>
+        <div class="profile-pic">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" alt="Sarah Khan">
+        </div>
+        <div class="bottom">
+          <div class="content">
+            <span class="name">Sarah Khan</span>
+            <span class="about-me">UI/UX &amp; Product Designer. Helping students master visual hierarchy, wireframing, and modern design tools.</span>
+          </div>
+          <div class="bottom-bottom">
+            <div class="social-links-container">
+              <svg viewBox="0 0 16 15.999" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path transform="translate(6 598)" d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z"></path></svg>
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+              <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+            </div>
+            <button class="Tbutton">Contact Me</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trainer Card 4 (Naya Added) -->
+      <div class="card">
+        <button class="mail">
+          <svg class="lucide lucide-mail" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="currentColor" fill="none" viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg"><rect rx="2" y="4" x="2" height="16" width="20"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        </button>
+        <div class="profile-pic">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=400" alt="Asad Ali">
+        </div>
+        <div class="bottom">
+          <div class="content">
+            <span class="name">Asad Ali</span>
+            <span class="about-me">Cloud &amp; DevOps Architect. 10+ years experience in managing enterprise AWS infrastructure and CI/CD pipelines.</span>
+          </div>
+          <div class="bottom-bottom">
+            <div class="social-links-container">
+              <svg viewBox="0 0 16 15.999" height="16" width="16" xmlns="http://www.w3.org/2000/svg"><path transform="translate(6 598)" d="M6-582H-2a4,4,0,0,1-4-4v-8a4,4,0,0,1,4-4H6a4,4,0,0,1,4,4v8A4,4,0,0,1,6-582ZM2-594a4,4,0,0,0-4,4,4,4,0,0,0,4,4,4,4,0,0,0,4-4A4.005,4.005,0,0,0,2-594Zm4.5-2a1,1,0,0,0-1,1,1,1,0,0,0,1,1,1,1,0,0,0,1-1A1,1,0,0,0,6.5-596ZM2-587.5A2.5,2.5,0,0,1-.5-590,2.5,2.5,0,0,1,2-592.5,2.5,2.5,0,0,1,4.5-590,2.5,2.5,0,0,1,2-587.5Z"></path></svg>
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+              <svg viewBox="0 0 496 512" xmlns="http://www.w3.org/2000/svg"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg>
+            </div>
+            <button class="Tbutton">Contact Me</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ============ FAQ ============ -->
+<section class="section faq" id="faq">
+  <div class="container faq-grid">
+    <div>
+      <span class="eyebrow-light">Frequently asked</span>
+      <h2 class="h2">The stuff people <br/>actually ask us.</h2>
+      <p class="section-lead">Still curious? Reach out — a real human replies within a day.</p>
+    </div>
+    <div class="faq-list">
+      <details open><summary>Do I need a technical background?<i class="ri-add-line"></i></summary><p>No. Our foundations sprint gets absolute beginners production‑ready before the main cohort starts. Roughly a third of every cohort is career‑changing.</p></details>
+      <details><summary>How does the job guarantee work?<i class="ri-add-line"></i></summary><p>Graduate the program, complete the hiring sprint and apply weekly. If you aren't placed within six months, we refund your tuition. Full terms in the enrollment agreement.</p></details>
+      <details><summary>Are the sessions live or recorded?<i class="ri-add-line"></i></summary><p>Both. Every workshop is live and interactive, plus recorded so you can review on your schedule or catch up if life happens.</p></details>
+      <details><summary>Can I do this while working full time?<i class="ri-add-line"></i></summary><p>Yes. Our part‑time tracks require 12–15 hours a week. Full‑time tracks are 40+ and finish faster.</p></details>
+      <details><summary>What if I fall behind?<i class="ri-add-line"></i></summary><p>Mentors run weekly 1‑on‑1s. If you slip, we adjust your plan or defer you to the next cohort at no cost.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact" data-theme="dark">
+  <div class="blob blob-5"></div>
+  <div class="container contact-grid">
+    <div class="contact-copy">
+      <span class="eyebrow">Talk to us</span>
+      <h2 class="h2 light">Your next chapter starts with <span class="text-gradient">one conversation</span>.</h2>
+      <p class="lead muted">Tell us where you are and where you want to go. An advisor will map the shortest path from here to hired.</p>
+
+      <ul class="contact-list">
+        <li><i class="ri-mail-line"></i> hello@technova.academy</li>
+        <li><i class="ri-phone-line"></i> +1 (415) 555‑0180</li>
+        <li><i class="ri-map-pin-line"></i> HQ · San Francisco, CA</li>
+      </ul>
+
+      <div class="socials">
+        <a href="#" aria-label="Twitter"><i class="ri-twitter-x-line"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-line"></i></a>
+        <a href="#" aria-label="GitHub"><i class="ri-github-line"></i></a>
+        <a href="#" aria-label="YouTube"><i class="ri-youtube-line"></i></a>
+      </div>
+    </div>
+
+    <form class="contact-form glass" onsubmit="event.preventDefault(); this.querySelector('.form-ok').classList.add('show');">
+      <div class="row">
+        <label><span>First name</span><input type="text" placeholder="Ada" required></label>
+        <label><span>Last name</span><input type="text" placeholder="Lovelace" required></label>
+      </div>
+      <label><span>Email</span><input type="email" placeholder="you@company.com" required></label>
+      <label><span>Track of interest</span>
+        <select>
+          <option>Full‑Stack Web Engineering</option>
+          <option>AI &amp; Machine Learning</option>
+          <option>Cloud &amp; DevOps</option>
+          <option>Cybersecurity</option>
+          <option>Product &amp; UX Design</option>
+          <option>Data Analytics</option>
+        </select>
+      </label>
+      <label><span>Tell us about your goals</span><textarea rows="4" placeholder="I want to move from support into engineering…"></textarea></label>
+      <button type="submit" class="btn btn-liquid magnetic" data-magnetic>Send message <i class="ri-send-plane-2-line"></i></button>
+      <div class="form-ok"><i class="ri-checkbox-circle-fill"></i> Thanks — we'll be in touch within a day.</div>
+    </form>
+  </div>
+</section>
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-col">
+        <a href="#top" class="footer-brand">
+          <span class="footer-brand-mark">TN</span>
+          <span>Tech<span class="fb-accent">Nova</span></span>
+        </a>
+        <p class="footer-about">
+          Pakistan's premium IT learning platform — live cohorts, mentor-reviewed
+          projects and career outcomes that travel with you.
+        </p>
+        <div class="newsletter-box">
+          <input type="email" placeholder="Your email address" aria-label="Email">
+          <button type="button">Subscribe</button>
+        </div>
+        <div class="social-row" aria-label="Social links">
+          <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
+          <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="ri-linkedin-fill"></i></a>
+          <a href="#" aria-label="YouTube"><i class="ri-youtube-fill"></i></a>
+          <a href="#" aria-label="X"><i class="ri-twitter-x-line"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul class="footer-links">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#trainers">Trainers</a></li>
+          <li><a href="#stories">Success Stories</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Courses</h5>
+        <ul class="footer-links">
+          <li><a href="#courses">Full Stack Development</a></li>
+          <li><a href="#courses">AI &amp; Machine Learning</a></li>
+          <li><a href="#courses">UI/UX Design</a></li>
+          <li><a href="#courses">Flutter Development</a></li>
+          <li><a href="#courses">Cloud Computing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-contact">
+        <h5>Get in touch</h5>
+        <ul class="footer-contact-list">
+          <li><i class="ri-map-pin-2-line"></i><span>2nd Floor, Techno Tower<br>Shahrah-e-Faisal, Karachi</span></li>
+          <li><i class="ri-mail-line"></i><a href="mailto:admissions@technova.pk">admissions@technova.pk</a></li>
+          <li><i class="ri-phone-line"></i><a href="tel:+923001234567">+92 300 1234567</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 TechNova Academy. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Libraries -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="script.js"></script>
+<script src="./js/presence.js"></script>
 </body>
 </html>
+
+
+
+
+
+
