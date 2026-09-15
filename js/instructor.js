@@ -15,37 +15,23 @@ const el = (tag, cls, html) => {
 const fmt = n => n.toLocaleString();
 const money = n => "$" + n.toLocaleString();
 
-/* ---------- Dummy Data ---------- */
+/* ---------- Data ----------
+   instructor / stats / courses below start EMPTY and are filled
+   from this instructor's own real Firestore data on load (see
+   loadMyCoursesFromFirestore at the bottom). Nothing here is
+   shared between different instructor accounts anymore. */
 const DATA = {
   instructor: {
-    name: "Prof. Bilal Raza",
-    email: "bilal.raza@technova.io",
-    bio: "Senior Frontend & AI instructor with 8+ years teaching modern web development. Passionate about clean UI, real-world projects and mentoring beginners.",
-    education: "MS Computer Science, NUST",
-    experience: "Senior Engineer @ Google, ex-Netsol",
-    skills: ["React", "Next.js", "Node.js", "Python", "AI/ML", "UI/UX", "TypeScript"],
-    socials: { linkedin: "#", twitter: "#", github: "#", youtube: "#" }
+    name: "", email: "", bio: "", education: "", experience: "",
+    skills: [], socials: { linkedin: "#", twitter: "#", github: "#", youtube: "#" }
   },
   stats: [
-    { label: "Total Courses", value: 12, icon: "fa-book", tone: "gold", trend: "+2 this month" },
-    { label: "Total Students", value: 4820, icon: "fa-users", tone: "blue", trend: "+184 this week" },
-    { label: "Assignments", value: 38, icon: "fa-file-pen", tone: "gold", trend: "4 pending review" },
-    { label: "Monthly Earnings", value: 12480, prefix: "$", icon: "fa-sack-dollar", tone: "blue", trend: "+18% MoM" }
+    { label: "Total Courses", value: 0, icon: "fa-book", tone: "gold", trend: "" },
+    { label: "Total Students", value: 0, icon: "fa-users", tone: "blue", trend: "" },
+    { label: "Assignments", value: 0, icon: "fa-file-pen", tone: "gold", trend: "" },
+    { label: "Monthly Earnings", value: 0, prefix: "$", icon: "fa-sack-dollar", tone: "blue", trend: "" }
   ],
-  courses: [
-    { id: 1, title: "React & Next.js — Production Grade", category: "Frontend", students: 1284, rating: 4.9, duration: "42h", lessons: 68, status: "published",
-      thumb: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop", price: 79, difficulty: "Intermediate" },
-    { id: 2, title: "Python for Data Science", category: "Data Science", students: 964, rating: 4.8, duration: "36h", lessons: 54, status: "published",
-      thumb: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&auto=format&fit=crop", price: 69, difficulty: "Beginner" },
-    { id: 3, title: "Advanced UI/UX Design Systems", category: "Design", students: 612, rating: 4.7, duration: "24h", lessons: 40, status: "published",
-      thumb: "https://images.unsplash.com/photo-1561070791-2526d30994b8?w=800&auto=format&fit=crop", price: 59, difficulty: "Advanced" },
-    { id: 4, title: "Machine Learning Foundations", category: "AI/ML", students: 480, rating: 4.9, duration: "50h", lessons: 72, status: "draft",
-      thumb: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&auto=format&fit=crop", price: 99, difficulty: "Intermediate" },
-    { id: 5, title: "Full-Stack MERN Bootcamp", category: "Full-Stack", students: 1520, rating: 4.8, duration: "60h", lessons: 90, status: "published",
-      thumb: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=800&auto=format&fit=crop", price: 89, difficulty: "Advanced" },
-    { id: 6, title: "Intro to Cloud & DevOps", category: "DevOps", students: 320, rating: 4.6, duration: "28h", lessons: 44, status: "draft",
-      thumb: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop", price: 69, difficulty: "Beginner" }
-  ],
+  courses: [],
   students: [
     { name: "Ayesha Khan", course: "React & Next.js", progress: 68, lastActive: "2h ago", status: "active", avatar: 47 },
     { name: "Ali Hamza", course: "Python for Data Science", progress: 42, lastActive: "1d ago", status: "active", avatar: 12 },
@@ -114,12 +100,20 @@ const state = {
 };
 
 /* ---------- Toast ---------- */
-function toast(msg, type = "info") {
+/* Accepts toast(msg), toast(msg, type[, ms]) AND toast(title, msg, type[, ms])
+   so nothing gets silently dropped regardless of which style calls it. */
+function toast(a, b, c, d) {
+  const TYPES = ["info","success","warn","warning","error"];
+  let title, msg, type, ms;
+  if (TYPES.includes(b)) { title = a; msg = ""; type = b; ms = typeof c === "number" ? c : undefined; }
+  else if (TYPES.includes(c)) { title = a; msg = b || ""; type = c; ms = typeof d === "number" ? d : undefined; }
+  else { title = a; msg = typeof b === "string" ? b : ""; type = "info"; ms = typeof c === "number" ? c : undefined; }
   const wrap = $("#toastWrap");
-  const t = el("div", `toast toast-${type}`, `<i class="fa-solid ${type === "success" ? "fa-check-circle" : type === "error" ? "fa-triangle-exclamation" : "fa-circle-info"}"></i><span>${msg}</span>`);
+  const icon = type === "success" ? "fa-check-circle" : type === "error" ? "fa-triangle-exclamation" : type === "warn" ? "fa-triangle-exclamation" : "fa-circle-info";
+  const t = el("div", `toast toast-${type}`, `<i class="fa-solid ${icon}"></i><span><b>${title}</b>${msg ? ` — ${msg}` : ""}</span>`);
   wrap.appendChild(t);
   setTimeout(() => t.classList.add("show"), 10);
-  setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 300); }, 3000);
+  setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 300); }, ms || 3400);
 }
 
 /* ---------- Modal ---------- */
@@ -843,6 +837,75 @@ function syncCreateForm() {
 }
 
 /* ==========================================================
+   FIREBASE — send a new course to the admin for approval.
+   The course is NOT visible to students until an admin
+   approves it from Admin Dashboard -> Approvals.
+   ========================================================== */
+async function submitCourseForApproval() {
+  const d = state.createDraft;
+  if (!d.title || !d.title.trim()) { toast("Please enter a course title", "warn"); return; }
+
+  const session = window.TechNova?.getSession?.();
+  if (!session) { toast("Please log in again", "error"); return; }
+
+  const payload = {
+    title: d.title, category: d.category, price: d.price, duration: d.duration,
+    difficulty: d.difficulty, language: d.language, description: d.description,
+    requirements: d.requirements, outcomes: d.outcomes, tags: d.tags,
+    modules: d.modules,
+  };
+
+  // Optimistic local card so the instructor sees it immediately as "pending"
+  const localId = Date.now();
+  DATA.courses.unshift({
+    id: localId, title: d.title, category: d.category, students: 0, rating: 0,
+    duration: d.duration, lessons: d.modules.reduce((a, m) => a + m.lessons.length, 0),
+    status: "pending",
+    thumb: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop",
+    price: d.price, difficulty: d.difficulty,
+  });
+  render("courses");
+
+  try {
+    await window.TechNova.addCourse(payload, session);
+    toast("Sent for approval ⏳", "An admin will review and approve this course before it goes live.", "success");
+  } catch (err) {
+    const msg = err?.message === "not-configured"
+      ? "Firebase isn't connected yet — paste your project config into js/firebase.js (see README-FIREBASE.md)."
+      : (err?.message || "Please try again.");
+    toast("Couldn't submit course", msg, "error", 6000);
+  }
+}
+
+/* Load this instructor's own profile + real courses from Firestore.
+   Nothing dummy is shown — a brand-new instructor account starts
+   completely empty until they add and get courses approved. */
+async function loadMyCoursesFromFirestore() {
+  const session = window.TechNova?.getSession?.();
+  if (!session) return; // guard.js will already be redirecting if there's no session
+
+  DATA.instructor.name = session.name || "";
+  DATA.instructor.email = session.email || "";
+
+  if (!window.TechNova?.listInstructorCourses) return;
+  try {
+    const mine = await window.TechNova.listInstructorCourses(session.uid);
+    DATA.courses = mine.map((c) => ({
+      id: c.id, title: c.title, category: c.category, students: c.students || 0,
+      rating: c.rating || 0, duration: c.duration, lessons: (c.modules || []).reduce((a, m) => a + (m.lessons?.length || 0), 0),
+      status: c.status === "approved" ? "published" : c.status,
+      thumb: c.thumb || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop",
+      price: c.price, difficulty: c.difficulty,
+    }));
+    DATA.stats[0].value = DATA.courses.length;
+    DATA.stats[1].value = DATA.courses.reduce((a, c) => a + (c.students || 0), 0);
+    render(state.view);
+  } catch (err) { /* Firestore not configured yet — dashboard just stays empty */ }
+}
+if (document.readyState !== "loading") loadMyCoursesFromFirestore();
+else document.addEventListener("DOMContentLoaded", loadMyCoursesFromFirestore);
+
+/* ==========================================================
    GLOBAL EVENT HANDLERS
    ========================================================== */
 document.addEventListener("click", e => {
@@ -895,7 +958,7 @@ document.addEventListener("click", e => {
       break;
     }
     case "save-draft": syncCreateForm(); toast("Draft saved locally", "success"); break;
-    case "publish-course": syncCreateForm(); toast("🎉 Course published!", "success"); render("courses"); break;
+    case "publish-course": syncCreateForm(); submitCourseForApproval(); break;
     case "next-step": syncCreateForm(); if (state.createStep < 4) { state.createStep++; render("create"); } break;
     case "prev-step": syncCreateForm(); if (state.createStep > 1) { state.createStep--; render("create"); } break;
     case "add-module": syncCreateForm(); addModule(); break;
@@ -963,7 +1026,10 @@ document.addEventListener("click", e => {
     case "cancel-settings": render("dashboard"); break;
     case "logout": openModal(`<h2>Sign out?</h2><p style="margin:10px 0">You'll be redirected to the login page.</p>
       <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn-ghost" data-close>Cancel</button>
-      <button class="btn-primary" onclick="location.reload()">Sign out</button></div>`); break;
+      <button class="btn-primary" id="confirmLogout">Sign out</button></div>`);
+      document.getElementById("confirmLogout")?.addEventListener("click", () =>
+        window.TechNova ? window.TechNova.logout() : (location.href = "authentication.html"));
+      break;
     case "upgrade": openModal(`<h2>Go Pro Instructor</h2><p style="margin:10px 0">Unlock advanced analytics, featured listings and priority support.</p>
       <ul style="margin:12px 0;padding-left:20px;color:var(--muted);font-size:13px">
         <li>Featured on homepage</li><li>Advanced student insights</li><li>Custom certificate templates</li><li>Priority payouts</li></ul>
@@ -1034,7 +1100,11 @@ function initTopbar() {
 
   // Notifications
   const bell = $("#bellBtn"), panel = $("#notifPanel");
-  bell?.addEventListener("click", e => { e.stopPropagation(); panel?.classList.toggle("open"); });
+  bell?.addEventListener("click", e => {
+    if (e.target.closest("#notifPanel")) return;
+    e.stopPropagation();
+    panel?.classList.toggle("open");
+  });
   const nList = $("#notifList");
   if (nList) nList.innerHTML = DATA.notifications.map(n => `
     <a href="#" class="np-item"><div class="np-ic ${n.tone}"><i class="fa-solid ${n.icon}"></i></div>
@@ -1046,8 +1116,15 @@ function initTopbar() {
 
   // Profile dropdown
   const pBtn = $("#profileBtn"), pDrop = $("#profileDropdown");
-  pBtn?.addEventListener("click", e => { e.stopPropagation(); pDrop?.classList.toggle("open"); });
-  document.addEventListener("click", () => { panel?.classList.remove("open"); pDrop?.classList.remove("open"); });
+  pBtn?.addEventListener("click", e => {
+    if (e.target.closest("#profileDropdown")) return; // let dropdown links/buttons work normally
+    e.stopPropagation();
+    pDrop?.classList.toggle("open");
+  });
+  document.addEventListener("click", (e) => {
+    if (!panel?.contains(e.target) && !bell?.contains(e.target)) panel?.classList.remove("open");
+    if (!pBtn?.contains(e.target)) pDrop?.classList.remove("open");
+  });
 
   // Search
   $("#searchInput")?.addEventListener("keydown", e => {

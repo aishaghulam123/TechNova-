@@ -407,3 +407,19 @@ button { font: inherit; border: 0; background: none; cursor: pointer; color: inh
   .toast-wrap { left: 12px; right: 12px; bottom: 12px; }
   .toast { max-width: none; }
 }
+/* ==========================================================
+   Custom cursor (shared with the landing page)
+   ========================================================== */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+  border-radius: 9999px; transform: translate(-50%, -50%); mix-blend-mode: difference;
+}
+.cursor-dot  { width: 6px; height: 6px; background: #fff; }
+.cursor-ring {
+  width: 34px; height: 34px; border: 1.5px solid #fff;
+  transition: width .25s, height .25s, border-color .25s, background .25s;
+}
+body.cursor-active .cursor-ring {
+  width: 60px; height: 60px; border-color: #FFAA00; background: rgba(255, 170, 0, .15);
+}
+@media (max-width: 900px) { .cursor-dot, .cursor-ring { display: none; } }

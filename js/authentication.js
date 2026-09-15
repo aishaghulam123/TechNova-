@@ -173,14 +173,13 @@
   // ------------------------------------------------------------------
   // Redirect helper
   // ------------------------------------------------------------------
-  const redirectByRole = (role) => {
-    // Persist a lightweight session for other pages
-    try {
-      localStorage.setItem("technova.session", JSON.stringify({
-        role, at: Date.now()
-      }));
-    } catch {}
-    const target = role === "instructor" ? "instructor.html" : "stdashboard.html";
+  const redirectByRole = (role, user = {}) => {
+    // Persist a lightweight session (see js/firebase.js)
+    window.TechNova?.setSession({ role, ...user });
+    // ?next=... lets a page send the user here and get them back afterwards
+    const next = params.get("next");
+    const target = next || window.TechNova?.homeFor(role) ||
+      (role === "instructor" ? "instructor.html" : "stdashboard.html");
     setTimeout(() => { window.location.href = target; }, 900);
   };
   const loadingBtn = (btn, on, textOn = "Please wait…") => {
@@ -194,9 +193,26 @@
     }
   };
   // ------------------------------------------------------------------
+  // Friendly copy for Firebase Auth / approval errors
+  // ------------------------------------------------------------------
+  const AUTH_ERROR_COPY = {
+    "invalid-credentials": ["Incorrect email or password", "Please double-check and try again."],
+    "no-profile": ["Account problem", "We couldn't find your profile. Please contact support."],
+    "pending-approval": ["Awaiting admin approval", "Your account is still pending — you'll be able to log in once an admin approves it."],
+    "rejected": ["Application rejected", "This account was not approved. Contact support if you think this is a mistake."],
+    "suspended": ["Account suspended", "This account has been suspended. Contact support for help."],
+    "auth/email-already-in-use": ["Email already registered", "Try logging in instead, or use a different email."],
+    "auth/weak-password": ["Weak password", "Please choose at least 6 characters."],
+    "auth/invalid-email": ["Invalid email", "Please enter a valid email address."],
+    "auth/popup-closed-by-user": ["Sign-in cancelled", "You closed the Google window before finishing."],
+    "auth/popup-blocked": ["Popup blocked", "Please allow popups for this site and try again."],
+  };
+  const explainAuthError = (err) => AUTH_ERROR_COPY[err?.message] || AUTH_ERROR_COPY[err?.code] ||
+    ["Something went wrong", "Please try again in a moment."];
+  // ------------------------------------------------------------------
   // LOGIN
   // ------------------------------------------------------------------
-  $("#loginForm").addEventListener("submit", (e) => {
+  $("#loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = $("#loginEmail").value.trim();
     const pass  = $("#loginPassword").value;
@@ -208,15 +224,21 @@
     if (!ok) return;
     const btn = e.submitter || $("#loginForm .btn-primary");
     loadingBtn(btn, true, "Signing in…");
-    // Determine role from email hint (demo): instructor@... → instructor
-    const role = /instructor|teacher|prof/i.test(email) ? "instructor" : "student";
-    toast("Welcome back!", `Redirecting to ${role} dashboard…`, "success");
-    redirectByRole(role);
+    try {
+      const user = await window.TechNova.logIn({ email, password: pass });
+      toast("Welcome back!", `Redirecting to ${user.role} dashboard…`, "success");
+      redirectByRole(user.role, user);
+    } catch (err) {
+      const [title, msg] = explainAuthError(err);
+      toast(title, msg, "error");
+    } finally {
+      loadingBtn(btn, false);
+    }
   });
   // ------------------------------------------------------------------
   // SIGNUP
   // ------------------------------------------------------------------
-  $("#signupForm").addEventListener("submit", (e) => {
+  $("#signupForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = $("#suName").value.trim();
     const email = $("#suEmail").value.trim();
@@ -234,17 +256,34 @@
     if (!ok) return;
     const btn = e.submitter || $("#signupForm .btn-primary");
     loadingBtn(btn, true, "Creating account…");
-    toast("Account created 🎉", `Welcome, ${name.split(" ")[0]}!`, "success");
-    redirectByRole(role);
+    try {
+      await window.TechNova.signUp({ name, email, password: pass, role });
+      toast("Account created 🎉", "An admin needs to approve your account before you can log in.", "success", 4200);
+      switchTab("login");
+      $("#signupForm").reset();
+    } catch (err) {
+      const [title, msg] = explainAuthError(err);
+      toast(title, msg, "error");
+    } finally {
+      loadingBtn(btn, false);
+    }
   });
   // ------------------------------------------------------------------
-  // Google (dummy)
+  // Google sign-in — not wired to a real OAuth provider yet.
   // ------------------------------------------------------------------
   $$("[data-google]").forEach(b => {
-    b.addEventListener("click", () => {
-      const role = $$("input[name='role']").find(r => r.checked)?.value || "student";
-      toast("Google sign-in", "Simulating OAuth…", "info");
-      setTimeout(() => redirectByRole(role), 700);
+    b.addEventListener("click", async () => {
+      loadingBtn(b, true, "Connecting to Google…");
+      try {
+        const user = await window.TechNova.signInWithGoogle();
+        toast("Welcome!", `Redirecting to ${user.role} dashboard…`, "success");
+        redirectByRole(user.role, user);
+      } catch (err) {
+        const [title, msg] = explainAuthError(err);
+        toast(title, msg, "error");
+      } finally {
+        loadingBtn(b, false);
+      }
     });
   });
   // ------------------------------------------------------------------

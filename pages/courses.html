@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Courses — TechNova Academy</title>
+  <meta name="description" content="Browse every TechNova Academy course — frontend, backend, AI, mobile, DevOps and security programs taught by industry instructors." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="../css/stdashboard.css" />
+  <link rel="stylesheet" href="../css/courses.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script type="module" src="../js/firebase.js"></script>
+  <script src="../js/courses-data.js" defer></script>
+  <script src="../js/courses.js" defer></script>
+  <script src="../js/cursor.js" defer></script>
+</head>
+<body>
+  <!-- Custom cursor (same as the landing page) -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand" id="brandLink">
+      <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
+      <span class="brand-text">Tech<span>Nova</span></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="../index.html#features">Features</a>
+      <a href="courses.html" class="active">Courses</a>
+      <a href="../index.html#analytics">Analytics</a>
+      <a href="../index.html#presence">Presence</a>
+      <a href="../index.html#stories">Stories</a>
+      <a href="../index.html#faq">FAQ</a>
+    </nav>
+    <a class="button" id="navGetStarted" href="authentication.html?mode=signup">
+      <span class="button-content">Get Started <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+  <main class="page-wrap">
+    <section class="courses-hero reveal-js">
+      <span class="eyebrow">Course catalogue</span>
+      <h1>Explore all TechNova courses</h1>
+      <p>Hand-crafted programs taught by working professionals. Pick a course to see its full outline, lessons and instructor.</p>
+    </section>
+
+    <div class="filter-bar reveal-js">
+      <div class="sbox">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search by course or instructor…" aria-label="Search courses" />
+      </div>
+      <select id="catFilter" aria-label="Filter by category"><option value="">All categories</option></select>
+      <select id="diffFilter" aria-label="Filter by level">
+        <option value="">All levels</option>
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+      </select>
+      <select id="sortBy" aria-label="Sort courses">
+        <option value="popular">Most popular</option>
+        <option value="rating">Highest rated</option>
+        <option value="az">A → Z</option>
+      </select>
+    </div>
+
+    <p class="result-count" id="resultCount"></p>
+    <div class="cat-grid" id="courseGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <i class="fa-regular fa-face-frown"></i>
+      <b>No courses match your search</b>
+      <p>Try a different keyword or clear the filters.</p>
+    </div>
+
+    <p class="site-foot">© <span id="year"></span> TechNova Academy — frontend demo with dummy data.</p>
+  </main>
+</body>
+</html>

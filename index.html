@@ -17,7 +17,7 @@
 <!-- AOS -->
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
 
-<link rel="stylesheet" href="./css/style.css" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
@@ -35,21 +35,18 @@
       <span class="brand-mark"><i class="ri-flashlight-fill"></i></span>
       <span class="brand-text">Tech<span>Nova</span></span>
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" id="navLinks">
       <a href="#features">Features</a>
-      <a href="#courses">Courses</a>
+      <a href="pages/courses.html">Courses</a>
       <a href="#analytics">Analytics</a>
       <a href="#presence">Presence</a>
       <a href="#stories">Stories</a>
       <a href="#faq">FAQ</a>
     </nav>
-   
-      <button class="button">
-        
-  <span class="button-content">Get Started <i class="ri-arrow-right-up-line"></i></span>
-</button> 
-    
-    <button class="nav-toggle" aria-label="Menu"><i class="ri-menu-line"></i></button>
+    <a class="button" id="navGetStarted" href="pages/authentication.html?mode=signup">
+      <span class="button-content">Get Started <i class="ri-arrow-right-up-line"></i></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="ri-menu-line"></i></button>
   </div>
 </header>
 
@@ -315,105 +312,13 @@
       </p>
     </div>
 
-    <div class="course-grid">
-      <!-- 1 -->
-      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up">
-        <div class="cc-media cc-gradient-1">
-          <i class="ri-code-box-line cc-glyph"></i>
-          <span class="cc-tag">Popular</span>
-        </div>
-        <div class="cc-body">
-          <div class="cc-meta"><i class="ri-time-line"></i> 24 weeks · Live</div>
-          <h3>Full‑Stack Web Engineering</h3>
-          <p>React, Node, Postgres and deployment on the edge. Ship four production apps.</p>
-          <div class="cc-foot">
-            <span class="cc-price">$1,890</span>
-            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
-          </div>
-        </div>
-      </article>
+    <!-- Cards are rendered from js/courses-data.js by js/home-courses.js -->
+    <div class="cat-grid" id="homeCourseGrid" data-limit="6"></div>
 
-      <!-- 2 -->
-      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="80">
-        <div class="cc-media cc-gradient-2">
-          <i class="ri-brain-line cc-glyph"></i>
-          <span class="cc-tag">New</span>
-        </div>
-        <div class="cc-body">
-          <div class="cc-meta"><i class="ri-time-line"></i> 20 weeks · Live</div>
-          <h3>AI &amp; Machine Learning</h3>
-          <p>From PyTorch fundamentals to shipping a RAG system with LLM evaluations.</p>
-          <div class="cc-foot">
-            <span class="cc-price">$2,190</span>
-            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 3 -->
-      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="160">
-        <div class="cc-media cc-gradient-3">
-          <i class="ri-cloud-line cc-glyph"></i>
-        </div>
-        <div class="cc-body">
-          <div class="cc-meta"><i class="ri-time-line"></i> 16 weeks · Live</div>
-          <h3>Cloud &amp; DevOps</h3>
-          <p>AWS, Kubernetes, Terraform. Design, deploy and observe production systems.</p>
-          <div class="cc-foot">
-            <span class="cc-price">$1,690</span>
-            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 4 -->
-      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up">
-        <div class="cc-media cc-gradient-4">
-          <i class="ri-shield-keyhole-line cc-glyph"></i>
-        </div>
-        <div class="cc-body">
-          <div class="cc-meta"><i class="ri-time-line"></i> 18 weeks · Live</div>
-          <h3>Cybersecurity</h3>
-          <p>Offensive and defensive labs, threat modeling, incident response playbooks.</p>
-          <div class="cc-foot">
-            <span class="cc-price">$1,790</span>
-            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 5 -->
-      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="80">
-        <div class="cc-media cc-gradient-5">
-          <i class="ri-palette-line cc-glyph"></i>
-          <span class="cc-tag">Design</span>
-        </div>
-        <div class="cc-body">
-          <div class="cc-meta"><i class="ri-time-line"></i> 14 weeks · Live</div>
-          <h3>Product &amp; UX Design</h3>
-          <p>Figma to shipped interface. Design systems, motion, research and handoff.</p>
-          <div class="cc-foot">
-            <span class="cc-price">$1,490</span>
-            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 6 -->
-      <article class="course-card tilt ui-card" data-tilt data-aos="fade-up" data-aos-delay="160">
-        <div class="cc-media cc-gradient-6">
-          <i class="ri-bar-chart-2-line cc-glyph"></i>
-        </div>
-        <div class="cc-body">
-          <div class="cc-meta"><i class="ri-time-line"></i> 16 weeks · Live</div>
-          <h3>Data Analytics</h3>
-          <p>SQL, dbt, Python and dashboards leaders trust. End‑to‑end analytics stack.</p>
-          <div class="cc-foot">
-            <span class="cc-price">$1,590</span>
-            <a href="#contact" class="cc-link">Enroll <i class="ri-arrow-right-line"></i></a>
-          </div>
-        </div>
-      </article>
+    <div class="courses-more">
+      <a href="pages/courses.html" class="btn btn-liquid magnetic" id="viewAllCoursesBtn" data-magnetic>
+        View all courses <i class="ri-arrow-right-line"></i>
+      </a>
     </div>
   </div>
 </section>
@@ -922,14 +827,14 @@
       </div>
     </div>
 
-    <form class="contact-form glass" onsubmit="event.preventDefault(); this.querySelector('.form-ok').classList.add('show');">
+    <form class="contact-form glass" id="contactForm" novalidate>
       <div class="row">
-        <label><span>First name</span><input type="text" placeholder="Ada" required></label>
-        <label><span>Last name</span><input type="text" placeholder="Lovelace" required></label>
+        <label><span>First name</span><input type="text" id="contactFirstName" name="firstName" placeholder="Ada" required></label>
+        <label><span>Last name</span><input type="text" id="contactLastName" name="lastName" placeholder="Lovelace" required></label>
       </div>
-      <label><span>Email</span><input type="email" placeholder="you@company.com" required></label>
+      <label><span>Email</span><input type="email" id="contactEmail" name="email" placeholder="you@company.com" required></label>
       <label><span>Track of interest</span>
-        <select>
+        <select id="contactTrack" name="track">
           <option>Full‑Stack Web Engineering</option>
           <option>AI &amp; Machine Learning</option>
           <option>Cloud &amp; DevOps</option>
@@ -938,9 +843,9 @@
           <option>Data Analytics</option>
         </select>
       </label>
-      <label><span>Tell us about your goals</span><textarea rows="4" placeholder="I want to move from support into engineering…"></textarea></label>
-      <button type="submit" class="btn btn-liquid magnetic" data-magnetic>Send message <i class="ri-send-plane-2-line"></i></button>
-      <div class="form-ok"><i class="ri-checkbox-circle-fill"></i> Thanks — we'll be in touch within a day.</div>
+      <label><span>Tell us about your goals</span><textarea id="contactMessage" name="message" rows="4" placeholder="I want to move from support into engineering…"></textarea></label>
+      <button type="submit" class="btn btn-liquid magnetic" id="contactSubmit" data-magnetic>Send message <i class="ri-send-plane-2-line"></i></button>
+      <div class="form-ok" id="contactFormOk"><i class="ri-checkbox-circle-fill"></i> Thanks — we'll be in touch within a day.</div>
     </form>
   </div>
 </section>
@@ -957,10 +862,10 @@
           Pakistan's premium IT learning platform — live cohorts, mentor-reviewed
           projects and career outcomes that travel with you.
         </p>
-        <div class="newsletter-box">
-          <input type="email" placeholder="Your email address" aria-label="Email">
-          <button type="button">Subscribe</button>
-        </div>
+        <form class="newsletter-box" id="newsletterForm">
+          <input type="email" id="newsletterEmail" placeholder="Your email address" aria-label="Email" required>
+          <button type="submit" id="newsletterBtn">Subscribe</button>
+        </form>
         <div class="social-row" aria-label="Social links">
           <a href="#" aria-label="Facebook"><i class="ri-facebook-fill"></i></a>
           <a href="#" aria-label="Instagram"><i class="ri-instagram-line"></i></a>
@@ -984,11 +889,11 @@
       <div class="footer-col">
         <h5>Courses</h5>
         <ul class="footer-links">
-          <li><a href="#courses">Full Stack Development</a></li>
-          <li><a href="#courses">AI &amp; Machine Learning</a></li>
-          <li><a href="#courses">UI/UX Design</a></li>
-          <li><a href="#courses">Flutter Development</a></li>
-          <li><a href="#courses">Cloud Computing</a></li>
+          <li><a href="pages/courses.html?cat=Frontend">Frontend Development</a></li>
+          <li><a href="pages/courses.html?cat=AI">AI &amp; Machine Learning</a></li>
+          <li><a href="pages/courses.html?cat=Backend">Backend Development</a></li>
+          <li><a href="pages/courses.html?cat=Mobile">Mobile / Flutter</a></li>
+          <li><a href="pages/courses.html?cat=DevOps">Cloud &amp; DevOps</a></li>
         </ul>
       </div>
 
@@ -1003,7 +908,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span>© 2026 TechNova Academy. All rights reserved.</span>
+      <span>© <span id="year">2026</span> TechNova Academy. All rights reserved.</span>
       <div class="footer-legal">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
@@ -1017,8 +922,11 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
-<script src="script.js"></script>
-<script src="./js/presence.js"></script>
+<script type="module" src="js/firebase.js"></script>
+<script src="js/courses-data.js"></script>
+<script src="js/script.js"></script>
+<script src="js/home-courses.js"></script>
+<script src="js/presence.js"></script>
 </body>
 </html>
 

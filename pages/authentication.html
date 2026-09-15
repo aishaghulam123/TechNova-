@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="../css/authentication.css" />
 </head>
 <body>
+  <!-- Custom cursor (same as the landing page) -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
   <!-- Floating decorative shapes -->
   <div class="bg-shapes" aria-hidden="true">
     <span class="shape s1"></span>
@@ -24,7 +28,7 @@
   <main class="auth">
     <!-- =============== LEFT / HERO =============== -->
     <section class="hero">
-      <a href="/" class="brand">
+      <a href="../index.html" class="brand" id="brandLink">
         <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
         <span class="brand-text"><b>TechNova</b><em>Academy</em></span>
       </a>
@@ -200,6 +204,8 @@
   </div>
   <!-- Toasts -->
   <div class="toast-wrap" id="toastWrap"></div>
+  <script type="module" src="../js/firebase.js"></script>
   <script src="../js/authentication.js" defer></script>
+  <script src="../js/cursor.js" defer></script>
 </body>
 </html>

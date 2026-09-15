@@ -358,35 +358,42 @@ body.cursor-active .cursor-ring{width:60px;height:60px;border-color:#FFAA00;back
 .feature-card p{margin:6px 0 0;color:rgba(255,255,255,.6);font-size:.9rem;line-height:1.55}
 .fc-num{position:absolute;top:16px;right:18px;font-size:11px;color:rgba(255,255,255,.35)}
 
-/* ---------- Courses ---------- */
-.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-@media (max-width:1000px){.course-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.course-grid{grid-template-columns:1fr}}
-.course-card{
-  border-radius:26px;overflow:hidden;background:#fff;border:1px solid var(--border);
+/* ---------- Courses (same card as courses.html) ---------- */
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:1000px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.cat-grid{grid-template-columns:1fr}}
+
+.cat-card{
+  display:flex;flex-direction:column;overflow:hidden;background:#fff;
+  border:1px solid var(--border);border-radius:26px;
+  box-shadow:var(--shadow-soft);
   transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s,border-color .3s;
-  transform-style:preserve-3d;
 }
-.course-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-elegant);border-color:var(--gold)}
-.cc-media{position:relative;height:200px;display:grid;place-items:center;overflow:hidden}
-.cc-media::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.35),transparent 60%);pointer-events:none}
-.cc-glyph{font-size:88px;color:rgba(255,255,255,.95);filter:drop-shadow(0 10px 20px rgba(0,0,0,.25));transition:transform .8s}
-.course-card:hover .cc-glyph{transform:scale(1.08) rotate(-6deg)}
-.cc-tag{position:absolute;top:14px;left:14px;background:rgba(15,16,18,.75);color:#FFAA00;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:9999px;backdrop-filter:blur(10px);z-index:1}
-.cc-gradient-1{background:linear-gradient(135deg,#2F80ED,#7a5cff)}
-.cc-gradient-2{background:linear-gradient(135deg,#ff7a00,#FFAA00)}
-.cc-gradient-3{background:linear-gradient(135deg,#0f766e,#22d3ee)}
-.cc-gradient-4{background:linear-gradient(135deg,#1a1a2e,#e94560)}
-.cc-gradient-5{background:linear-gradient(135deg,#ec4899,#f59e0b)}
-.cc-gradient-6{background:linear-gradient(135deg,#4f46e5,#06b6d4)}
-.cc-body{padding:22px}
-.cc-meta{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:.1em;font-weight:600}
-.cc-body h3{margin-top:10px;font-size:1.2rem}
-.cc-body p{color:var(--muted);font-size:.92rem;line-height:1.6;margin-top:8px}
-.cc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--border)}
-.cc-price{font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;color:var(--ink)}
-.cc-link{color:var(--electric);font-weight:600;font-size:.92rem;display:inline-flex;align-items:center;gap:6px;transition:gap .3s}
-.cc-link:hover{gap:12px}
+.cat-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-elegant);border-color:var(--gold)}
+.cat-card .thumb{position:relative;aspect-ratio:16/9;overflow:hidden}
+.cat-card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.cat-card:hover .thumb img{transform:scale(1.07)}
+.cat-card .badge{
+  position:absolute;top:14px;left:14px;z-index:1;padding:4px 10px;border-radius:9999px;
+  background:rgba(15,16,18,.75);color:var(--gold);font-size:11px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(10px);
+}
+.cat-card .body{display:flex;flex-direction:column;gap:8px;flex:1;padding:20px 22px 22px}
+.cat-card .cat{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--electric)}
+.cat-card h3{font-size:1.1rem;line-height:1.35;color:var(--ink)}
+.cat-card .instr{margin:0;display:flex;align-items:center;gap:6px;font-size:.88rem;color:var(--muted)}
+.cat-card .meta{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted)}
+.cat-card .meta span{display:inline-flex;align-items:center;gap:5px}
+.cat-card .meta .star{color:var(--gold)}
+.cat-card .foot{
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:auto;padding-top:16px;border-top:1px solid var(--border)
+}
+.cat-card .price{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;color:var(--ink)}
+.cc-link{color:var(--electric);font-weight:600;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;transition:gap .3s}
+.cat-card:hover .cc-link{gap:12px}
+
+.courses-more{display:flex;justify-content:center;margin-top:34px}
 
 /* ---------- Analytics ---------- */
 .analytics-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:22px}

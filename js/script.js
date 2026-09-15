@@ -40,11 +40,13 @@ gsap.utils.toArray('.section-head').forEach(head => {
 
 /* ---------- Scroll progress bar ---------- */
 const progress = document.querySelector('.scroll-progress span');
-window.addEventListener('scroll', () => {
-  const h = document.documentElement;
-  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
-  progress.style.width = (scrolled * 100) + '%';
-}, { passive: true });
+if (progress) {
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
+    progress.style.width = (scrolled * 100) + '%';
+  }, { passive: true });
+}
 
 /* ---------- Custom cursor ---------- */
 const dot = document.querySelector('.cursor-dot');
@@ -124,13 +126,8 @@ ScrollTrigger.create({
 /* ---------- Nav: theme-aware + scrolled shadow ---------- */
 const nav = document.getElementById('nav');
 const darkSections = document.querySelectorAll('section[data-theme="dark"]');
-const io = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && entry.intersectionRatio > 0.35) {
-      nav.classList.add('dark');
-    }
-  });
-  // fallback: if none intersecting in top area, light
+const io = new IntersectionObserver(() => {
+  // The navbar goes dark whenever a dark section sits under it
   const anyDark = [...darkSections].some(s => {
     const r = s.getBoundingClientRect();
     return r.top < 120 && r.bottom > 120;
@@ -176,3 +173,42 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+/* ---------- Footer year ---------- */
+const yearEl = document.getElementById('year');
+if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+/* ---------- Mobile nav toggle ---------- */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.addEventListener('click', e => { if (e.target.tagName === 'A') navLinks.classList.remove('open'); });
+}
+
+/* ---------- Contact form (swap for a Firestore write later) ---------- */
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
+    /* const lead = {
+         firstName: contactFirstName.value, lastName: contactLastName.value,
+         email: contactEmail.value, track: contactTrack.value, message: contactMessage.value
+       };  ->  addDoc(collection(db, "leads"), lead) */
+    document.getElementById('contactFormOk')?.classList.add('show');
+    contactForm.reset();
+  });
+}
+
+/* ---------- Newsletter ---------- */
+const newsletterForm = document.getElementById('newsletterForm');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const btn = document.getElementById('newsletterBtn');
+    btn.textContent = 'Subscribed ✓';
+    btn.disabled = true;
+    newsletterForm.reset();
+  });
+}

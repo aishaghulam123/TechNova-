@@ -3,20 +3,14 @@
    Pure vanilla ES6 · GSAP · Chart.js · jsPDF
    ========================================================= */
 
-/* ---------- Data ---------- */
-const courses = [
-  { title: "React & Next.js — Production Grade", instr: "Sara Ahmed", cat: "Frontend", diff: "Intermediate", progress: 68, duration: "42h", img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&auto=format&fit=crop" },
-  { title: "Python for Modern Backends",         instr: "Bilal Raza",  cat: "Backend",  diff: "Beginner",     progress: 42, duration: "38h", img: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=600&auto=format&fit=crop" },
-  { title: "Applied Machine Learning",           instr: "Dr. Fatima",  cat: "AI",       diff: "Advanced",     progress: 25, duration: "56h", img: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=600&auto=format&fit=crop" },
-  { title: "Flutter Cross-Platform Apps",        instr: "Omar Iqbal",  cat: "Mobile",   diff: "Intermediate", progress: 100, duration: "34h", img: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=600&auto=format&fit=crop" },
-  { title: "AWS Cloud Architect Path",           instr: "Hina Malik",  cat: "DevOps",   diff: "Intermediate", progress: 55, duration: "46h", img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop" },
-  { title: "Cybersecurity Fundamentals",         instr: "Zain Abbas",  cat: "Security", diff: "Beginner",     progress: 12, duration: "40h", img: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&auto=format&fit=crop" },
-];
-const certificates = [
-  { title: "JavaScript Mastery",       date: "Aug 12, 2026", id: "TN-JS-2026-0812" },
-  { title: "UI/UX Design Foundations", date: "Jun 03, 2026", id: "TN-UX-2026-0603" },
-  { title: "Git & GitHub Pro",         date: "Apr 21, 2026", id: "TN-GIT-2026-0421" },
-];
+/* ---------- Data ----------
+   `courses` (enrolled) and `certificates` start EMPTY — a new
+   student sees nothing until they actually enroll in a course
+   (see loadMyEnrollments at the bottom, and the "Enroll" button
+   on course-detail.html). Nothing here is shared between
+   different student accounts. */
+const courses = [];
+const certificates = [];
 const recommended = [
   { title: "TypeScript Deep Dive",    instr: "Sara Ahmed",  rating: 4.9, price: "$129", img: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=600&auto=format&fit=crop" },
   { title: "System Design Interview", instr: "Bilal Raza",  rating: 4.8, price: "$199", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop" },
@@ -102,7 +96,8 @@ const renderCourses = () => {
 renderCourses();
 
 /* ---------- Render: Certificates ---------- */
-$("#certGrid").innerHTML = certificates.map((c, i) => `
+const renderCertificates = () => {
+  $("#certGrid").innerHTML = certificates.map((c, i) => `
   <div class="cert-card">
     <div class="cert-seal"><i class="fa-solid fa-award"></i></div>
     <h4>${esc(c.title)}</h4>
@@ -113,6 +108,8 @@ $("#certGrid").innerHTML = certificates.map((c, i) => `
     </div>
   </div>
 `).join("");
+};
+renderCertificates();
 
 /* ---------- Render: Recommended ---------- */
 $("#recTrack").innerHTML = recommended.map((r, i) => `
@@ -172,7 +169,7 @@ const navigate = (label) => {
     "Assignments":   () => toast("You have 3 pending assignments.", "warn"),
     "Quizzes":       () => openQuiz(),
     "Certificates":  () => document.querySelector(".cert-grid")?.scrollIntoView({ behavior: "smooth", block: "start" }),
-    "Wishlist":      () => toast("Your wishlist is empty. Add courses to save them.", "info"),
+    "Wishlist":      () => openWishlistModal(),
     "Messages":      () => toast("No new messages.", "info"),
     "Profile":       () => openProfileModal(),
     "Settings":      () => openSettingsModal(),
@@ -181,7 +178,9 @@ const navigate = (label) => {
 };
 
 $$(".sb-item, .brand").forEach(item => item.addEventListener("click", (e) => {
-  if (item.dataset.action === "logout") return; // handled below
+  if (item.dataset.action === "logout") return;            // handled below
+  const href = item.getAttribute("href");
+  if (href && href !== "#") return;                        // real page link (index.html, courses.html)
   e.preventDefault();
   const label = item.dataset.nav;
   if (label) navigate(label);
@@ -199,11 +198,22 @@ const profileBtn = $("#profileBtn");
 const profileDropdown = $("#profileDropdown");
 const bellBtn = $("#bellBtn");
 const notifPanel = $("#notifPanel");
-profileBtn.addEventListener("click", (e) => { e.stopPropagation(); profileDropdown.classList.toggle("open"); notifPanel.classList.remove("open"); });
-bellBtn.addEventListener("click", (e) => { e.stopPropagation(); notifPanel.classList.toggle("open"); profileDropdown.classList.remove("open"); });
-document.addEventListener("click", () => { profileDropdown.classList.remove("open"); notifPanel.classList.remove("open"); });
-profileDropdown.addEventListener("click", (e) => e.stopPropagation());
-notifPanel.addEventListener("click", (e) => e.stopPropagation());
+profileBtn.addEventListener("click", (e) => {
+  if (e.target.closest("#profileDropdown")) return; // let dropdown links behave normally (open modal, then close via the outside-click handler below)
+  e.stopPropagation();
+  profileDropdown.classList.toggle("open");
+  notifPanel.classList.remove("open");
+});
+bellBtn.addEventListener("click", (e) => {
+  if (e.target.closest("#notifPanel")) return;
+  e.stopPropagation();
+  notifPanel.classList.toggle("open");
+  profileDropdown.classList.remove("open");
+});
+document.addEventListener("click", (e) => {
+  if (!profileBtn.contains(e.target)) profileDropdown.classList.remove("open");
+  if (!bellBtn.contains(e.target) && !notifPanel.contains(e.target)) notifPanel.classList.remove("open");
+});
 $("#markAllRead").addEventListener("click", (e) => {
   e.preventDefault();
   $("#notifList").querySelectorAll(".nm-item").forEach(el => el.style.opacity = ".55");
@@ -639,6 +649,52 @@ const openCourseModal = (c) => {
   `);
 };
 
+/* ---------- Wishlist (real Firestore data) ---------- */
+let wishlistItems = [];
+
+function renderWishlistBody() {
+  const body = $("#wishlistModalBody");
+  if (!body) return;
+  if (!wishlistItems.length) {
+    body.innerHTML = `<p style="color:var(--muted);text-align:center;padding:28px 0">Your wishlist is empty. Tap the heart icon on any course to save it here.</p>`;
+    return;
+  }
+  body.innerHTML = wishlistItems.map((w) => `
+    <div style="display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)">
+      <img src="${w.courseImg || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200&auto=format&fit=crop"}" style="width:56px;height:56px;border-radius:12px;object-fit:cover;flex-shrink:0" alt="" />
+      <div style="flex:1;min-width:0">
+        <b style="display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(w.courseTitle || "Untitled course")}</b>
+        <span style="font-size:12px;color:var(--muted)">${esc(w.instructorName || "")}</span>
+      </div>
+      <button class="btn-ghost" style="padding:8px 12px" data-action="remove-wishlist" data-wid="${w.id}" aria-label="Remove from wishlist"><i class="fa-solid fa-trash"></i></button>
+    </div>
+  `).join("");
+}
+
+const openWishlistModal = async () => {
+  profileDropdown.classList.remove("open");
+  openModal(`
+    <h2>Your Wishlist</h2>
+    <p class="sub">Courses you've saved for later.</p>
+    <div id="wishlistModalBody" style="min-height:60px">
+      <p style="color:var(--muted);text-align:center;padding:24px 0"><i class="fa-solid fa-circle-notch fa-spin"></i> Loading…</p>
+    </div>
+    <div class="modal-actions"><button class="btn-ghost" data-close>Close</button></div>
+  `);
+  const session = window.TechNova?.getSession?.();
+  const body = $("#wishlistModalBody");
+  if (!session || !window.TechNova?.listWishlist) {
+    body.innerHTML = `<p style="color:var(--muted);text-align:center;padding:24px 0">Sign in to save and view your wishlist.</p>`;
+    return;
+  }
+  try {
+    wishlistItems = await window.TechNova.listWishlist(session.uid);
+    renderWishlistBody();
+  } catch (err) {
+    body.innerHTML = `<p style="color:var(--danger,#ef4444);text-align:center;padding:24px 0">Couldn't load your wishlist. Please try again.</p>`;
+  }
+};
+
 /* =========================================================
    Global click delegation for data-action buttons
    ========================================================= */
@@ -655,7 +711,15 @@ document.addEventListener("click", (e) => {
     "bookmark": () => toast("Bookmarked.", "success"),
     "save-course": () => toast("Course saved to your list.", "success"),
     "open-course": () => openCourseModal(courses[idx]),
-    "enroll": () => toast(`Enrolled in "${recommended[idx].title}".`, "success"),
+    "enroll": async () => {
+      const session = window.TechNova?.getSession?.();
+      if (!session || !window.TechNova?.enrollInCourse) { toast(`Enrolled in "${recommended[idx].title}".`, "success"); return; }
+      try {
+        await window.TechNova.enrollInCourse(session, { id: `rec-${idx}`, title: recommended[idx].title, instr: recommended[idx].instr, img: recommended[idx].img });
+        toast(`Enrolled in "${recommended[idx].title}" — check My Courses!`, "success");
+        loadMyEnrollments();
+      } catch (err) { toast(err?.message || "Couldn't enroll — please try again.", "error"); }
+    },
     "join-live": () => { toast(`Joining "${liveClasses[idx].title}"…`, "info"); setTimeout(continueLearning, 500); },
     "view-cert": () => openModal(certPreviewHTML(certificates[idx])),
     "download-cert": () => downloadCertPDF(certificates[idx]),
@@ -675,12 +739,24 @@ document.addEventListener("click", (e) => {
       <div class="modal-actions"><button class="btn-primary"><i class="fa-solid fa-crown"></i> Choose Pro</button><button class="btn-ghost" data-close>Maybe later</button></div>
     `),
     "logout": () => {
-      if (confirm("Sign out of TechNova Academy?")) toast("Signed out. Redirecting…", "info");
+      if (!confirm("Sign out of TechNova Academy?")) return;
+      toast("Signed out. Redirecting…", "info");
+      setTimeout(() => (window.TechNova ? window.TechNova.logout() : (location.href = "authentication.html")), 700);
     },
     "profile": openProfileModal,
     "settings": openSettingsModal,
     "billing": () => toast("Billing panel coming soon.", "info"),
     "help": () => toast("Help Center: support@technova.io", "info"),
+    "remove-wishlist": async () => {
+      const wid = el.dataset.wid;
+      if (!wid || !window.TechNova?.removeFromWishlist) return;
+      try {
+        await window.TechNova.removeFromWishlist(wid);
+        wishlistItems = wishlistItems.filter((w) => w.id !== wid);
+        renderWishlistBody();
+        toast("Removed from wishlist.", "success");
+      } catch (err) { toast(err?.message || "Couldn't remove — please try again.", "error"); }
+    },
     "edit-profile": openProfileModal,
     "edit-profile-modal": () => toast("Profile editor coming soon.", "info"),
     "calendar": () => toast("Calendar view is on the way.", "info"),
@@ -693,3 +769,32 @@ document.addEventListener("click", (e) => {
     actions[act]();
   }
 });
+/* ==========================================================
+   FIREBASE — load THIS student's real profile + enrollments.
+   Nothing dummy — a brand-new student sees an empty dashboard
+   until they actually enroll in a course.
+   ========================================================== */
+async function loadMyEnrollments() {
+  const session = window.TechNova?.getSession?.();
+  if (!session) return; // guard.js already redirects if there's no session
+
+  const firstName = (session.name || "Student").split(" ")[0];
+  const nameEls = [$("#topbarName"), $("#dropdownName"), $("#welcomeName")];
+  nameEls.forEach((el) => { if (el) el.textContent = session.name ? (el.id === "welcomeName" ? firstName : session.name) : el.textContent; });
+  const emailEl = $("#dropdownEmail");
+  if (emailEl && session.email) emailEl.textContent = session.email;
+
+  if (!window.TechNova?.listStudentEnrollments) return;
+  try {
+    const mine = await window.TechNova.listStudentEnrollments(session.uid);
+    courses.length = 0;
+    mine.forEach((e) => courses.push({
+      title: e.courseTitle, instr: e.instructorName, cat: e.courseCategory,
+      diff: e.courseDifficulty, progress: e.progress || 0, duration: e.courseDuration,
+      img: e.courseImg || "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&auto=format&fit=crop",
+    }));
+    renderCourses();
+  } catch (err) { /* Firestore not configured yet — dashboard just stays empty */ }
+}
+if (document.readyState !== "loading") loadMyEnrollments();
+else document.addEventListener("DOMContentLoaded", loadMyEnrollments);
