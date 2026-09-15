@@ -25,7 +25,7 @@
     <!-- ============ SIDEBAR ============ -->
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-head">
-        <a href="#" class="brand" data-view="dashboard">
+        <a href="../index.html" class="brand" id="brandLink">
           <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
           <span class="brand-text"><b>TechNova</b><em>Instructor</em></span>
         </a>
@@ -39,6 +39,7 @@
         <a href="#" class="sb-item" data-view="assignments" data-tip="Assignments"><i class="fa-solid fa-file-pen"></i><span>Assignments</span><em class="sb-badge">4</em></a>
         <a href="#" class="sb-item" data-view="students" data-tip="Students"><i class="fa-solid fa-users"></i><span>Students</span></a>
         <a href="#" class="sb-item" data-view="quizzes" data-tip="Quizzes"><i class="fa-solid fa-clipboard-question"></i><span>Quizzes</span></a>
+        <a href="courses.html" class="sb-item" id="navBrowseCourses" data-tip="Public catalogue"><i class="fa-solid fa-compass"></i><span>Public catalogue</span></a>
         <a href="#" class="sb-item" data-view="analytics" data-tip="Analytics"><i class="fa-solid fa-chart-line"></i><span>Analytics</span></a>
         <a href="#" class="sb-item" data-view="messages" data-tip="Messages"><i class="fa-regular fa-comment-dots"></i><span>Messages</span><em class="sb-dot"></em></a>
         <a href="#" class="sb-item" data-view="earnings" data-tip="Earnings"><i class="fa-solid fa-sack-dollar"></i><span>Earnings</span></a>
@@ -117,6 +118,9 @@
 
   <div class="toast-wrap" id="toastWrap"></div>
 
+  <script>window.TECHNOVA_ALLOWED_ROLE = "instructor";</script>
+  <script type="module" src="../js/firebase.js"></script>
+  <script type="module" src="../js/guard.js"></script>
   <script src="../js/instructor.js" defer></script>
 </body>
 </html>

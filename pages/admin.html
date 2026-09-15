@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — TechNova Academy</title>
+  <meta name="description" content="TechNova Academy admin dashboard — manage students, instructors, courses, categories, revenue and platform analytics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+  <!-- Shared dashboard theme tokens + shell -->
+  <link rel="stylesheet" href="../css/stdashboard.css" />
+  <!-- Shared dashboard components (tables, forms, chat, profile) -->
+  <link rel="stylesheet" href="../css/instructor.css" />
+  <!-- Admin-specific -->
+  <link rel="stylesheet" href="../css/admin.css" />
+</head>
+<body>
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <div class="app">
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <a href="../index.html" class="brand" id="brandLink">
+          <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
+          <span class="brand-text"><b>TechNova</b><em>Admin</em></span>
+        </a>
+        <button class="sb-collapse" id="sbCollapse" aria-label="Collapse sidebar"><i class="fa-solid fa-angles-left"></i></button>
+      </div>
+
+      <nav class="sb-nav" id="sbNav">
+        <span class="sb-label">Platform</span>
+        <a href="#" class="sb-item active" id="navDashboard" data-view="dashboard" data-tip="Dashboard"><i class="fa-solid fa-grip"></i><span>Dashboard</span></a>
+        <a href="#" class="sb-item" id="navStudents" data-view="students" data-tip="Students"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a>
+        <a href="#" class="sb-item" id="navInstructors" data-view="instructors" data-tip="Instructors"><i class="fa-solid fa-chalkboard-user"></i><span>Instructors</span></a>
+        <a href="#" class="sb-item" id="navCourses" data-view="courses" data-tip="Courses"><i class="fa-solid fa-book-open"></i><span>Courses</span></a>
+        <a href="#" class="sb-item" id="navApprovals" data-view="approvals" data-tip="Approvals"><i class="fa-solid fa-user-check"></i><span>Approvals</span></a>
+        <a href="#" class="sb-item" id="navCategories" data-view="categories" data-tip="Categories"><i class="fa-solid fa-shapes"></i><span>Categories</span></a>
+
+        <span class="sb-label">Learning</span>
+        <a href="#" class="sb-item" id="navAssignments" data-view="assignments" data-tip="Assignments"><i class="fa-solid fa-file-pen"></i><span>Assignments</span></a>
+        <a href="#" class="sb-item" id="navQuizzes" data-view="quizzes" data-tip="Quizzes"><i class="fa-solid fa-clipboard-question"></i><span>Quizzes</span></a>
+        <a href="#" class="sb-item" id="navCertificates" data-view="certificates" data-tip="Certificates"><i class="fa-solid fa-award"></i><span>Certificates</span></a>
+
+        <span class="sb-label">Operations</span>
+        <a href="#" class="sb-item" id="navAnnouncements" data-view="announcements" data-tip="Announcements"><i class="fa-solid fa-bullhorn"></i><span>Announcements</span></a>
+        <a href="#" class="sb-item" id="navMessages" data-view="messages" data-tip="Messages"><i class="fa-regular fa-comment-dots"></i><span>Messages</span><em class="sb-dot"></em></a>
+        <a href="#" class="sb-item" id="navAnalytics" data-view="analytics" data-tip="Analytics"><i class="fa-solid fa-chart-line"></i><span>Analytics</span></a>
+        <a href="#" class="sb-item" id="navRevenue" data-view="revenue" data-tip="Revenue"><i class="fa-solid fa-sack-dollar"></i><span>Revenue</span></a>
+
+        <span class="sb-label">Account</span>
+        <a href="#" class="sb-item" id="navProfile" data-view="profile" data-tip="Profile"><i class="fa-regular fa-user"></i><span>Profile</span></a>
+        <a href="#" class="sb-item" id="navSettings" data-view="settings" data-tip="Settings"><i class="fa-solid fa-gear"></i><span>Settings</span></a>
+        <a href="courses.html" class="sb-item" id="navBrowseCourses" data-tip="Public catalogue"><i class="fa-solid fa-compass"></i><span>Public catalogue</span></a>
+      </nav>
+
+      <div class="sb-foot">
+        <a href="#" class="sb-item logout" id="logoutBtn" data-action="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- ============ TOPBAR ============ -->
+      <header class="topbar">
+        <button class="icon-btn burger" id="burger" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+
+        <div class="search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search students, instructors, courses…" autocomplete="off" />
+          <kbd>⌘K</kbd>
+          <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <div class="top-actions">
+          <span class="today-chip"><i class="fa-regular fa-calendar"></i> <span id="todayChip"></span></span>
+          <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><i class="fa-regular fa-moon"></i></button>
+          <button class="icon-btn bell" id="msgBtn" aria-label="Messages"><i class="fa-regular fa-comment-dots"></i><em class="dot"></em></button>
+          <button class="icon-btn bell" id="bellBtn" aria-label="Notifications"><i class="fa-regular fa-bell"></i><em class="dot"></em></button>
+
+          <div class="profile" id="profileBtn">
+            <img src="https://i.pravatar.cc/80?img=68" alt="Admin" />
+            <div class="p-meta"><b>Hamza Sheikh</b><span>Super Admin</span></div>
+            <i class="fa-solid fa-chevron-down"></i>
+            <div class="dropdown" id="profileDropdown">
+              <div class="dd-head">
+                <img src="https://i.pravatar.cc/80?img=68" alt="" />
+                <div><b>Hamza Sheikh</b><span>admin@technova.io</span></div>
+              </div>
+              <a href="#" data-view="profile"><i class="fa-regular fa-user"></i> My Profile</a>
+              <a href="#" data-view="settings"><i class="fa-solid fa-gear"></i> Settings</a>
+              <a href="#" data-view="revenue"><i class="fa-solid fa-credit-card"></i> Revenue</a>
+              <hr />
+              <a href="#" class="danger" data-action="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="notif-panel" id="notifPanel">
+          <div class="np-head"><b>Notifications</b><a href="#" id="markAllRead">Mark all read</a></div>
+          <div class="np-list" id="notifList"></div>
+        </div>
+      </header>
+
+      <!-- ============ CONTENT ============ -->
+      <section class="content" id="viewRoot"><!-- Views injected by js/admin-dashboard.js --></section>
+
+      <footer class="foot">
+        <span>© <span id="year"></span> TechNova Academy. Admin Portal.</span>
+        <nav><a href="#" data-action="privacy">Privacy</a><a href="#" data-action="terms">Terms</a><a href="#" data-action="support">Support</a></nav>
+      </footer>
+    </main>
+  </div>
+
+  <div class="scrim" id="scrim"></div>
+
+  <!-- ============ FLOATING ACTION BUTTON ============ -->
+  <button class="fab" id="fab" aria-label="Quick actions"><i class="fa-solid fa-plus"></i></button>
+  <div class="fab-menu" id="fabMenu">
+    <button data-action="add-course"><i class="fa-solid fa-book-open"></i> New course</button>
+    <button data-action="invite-instructor"><i class="fa-solid fa-user-plus"></i> Invite instructor</button>
+    <button data-action="add-category"><i class="fa-solid fa-shapes"></i> Add category</button>
+    <button data-action="new-announcement"><i class="fa-solid fa-bullhorn"></i> Announcement</button>
+  </div>
+
+  <!-- ============ MODAL ============ -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel" role="dialog" aria-modal="true">
+      <button class="modal-close" data-close aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <div class="toast-wrap" id="toastWrap"></div>
+
+  <script>window.TECHNOVA_ALLOWED_ROLE = "admin";</script>
+  <script type="module" src="../js/firebase.js"></script>
+  <script type="module" src="../js/guard.js"></script>
+  <script src="../js/admin-dashboard.js" defer></script>
+</body>
+</html>

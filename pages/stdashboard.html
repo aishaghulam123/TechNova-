@@ -22,7 +22,7 @@
   <div class="app">
     <aside class="sidebar" id="sidebar">
       <div class="sidebar-head">
-        <a href="#" class="brand" data-nav="Dashboard">
+        <a href="../index.html" class="brand" id="brandLink" data-nav="Dashboard">
           <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
           <span class="brand-text"><b>TechNova</b><em>Academy</em></span>
         </a>
@@ -37,6 +37,7 @@
         <a href="#" class="sb-item" data-tip="Quizzes" data-nav="Quizzes"><i class="fa-solid fa-clipboard-question"></i><span>Quizzes</span></a>
         <a href="#" class="sb-item" data-tip="Certificates" data-nav="Certificates"><i class="fa-solid fa-award"></i><span>Certificates</span></a>
         <span class="sb-label">Personal</span>
+        <a href="courses.html" class="sb-item" id="navBrowseCourses" data-tip="Browse catalogue"><i class="fa-solid fa-compass"></i><span>Browse courses</span></a>
         <a href="#" class="sb-item" data-tip="Wishlist" data-nav="Wishlist"><i class="fa-regular fa-heart"></i><span>Wishlist</span></a>
         <a href="#" class="sb-item" data-tip="Messages" data-nav="Messages"><i class="fa-regular fa-comment-dots"></i><span>Messages</span><em class="sb-dot"></em></a>
         <a href="#" class="sb-item" data-tip="Profile" data-nav="Profile"><i class="fa-regular fa-user"></i><span>Profile</span></a>
@@ -66,13 +67,13 @@
             <i class="fa-regular fa-bell"></i><em class="dot"></em>
           </button>
           <div class="profile" id="profileBtn">
-            <img src="https://i.pravatar.cc/80?img=47" alt="Ayesha Khan" />
-            <div class="p-meta"><b>Ayesha Khan</b><span>Premium student</span></div>
+            <img src="https://i.pravatar.cc/80?img=47" alt="Student" />
+            <div class="p-meta"><b id="topbarName">Student</b><span>Student</span></div>
             <i class="fa-solid fa-chevron-down"></i>
             <div class="dropdown" id="profileDropdown">
               <div class="dd-head">
                 <img src="https://i.pravatar.cc/80?img=47" alt="" />
-                <div><b>Ayesha Khan</b><span>ayesha.khan@technova.io</span></div>
+                <div><b id="dropdownName">Student</b><span id="dropdownEmail"></span></div>
               </div>
               <a href="#" data-action="profile"><i class="fa-regular fa-user"></i> View Profile</a>
               <a href="#" data-action="settings"><i class="fa-solid fa-gear"></i> Account Settings</a>
@@ -93,7 +94,7 @@
         <section class="hero-card reveal">
           <div class="hero-copy">
             <span class="eyebrow"><i class="fa-solid fa-sparkles"></i> <span id="todayDate"></span></span>
-            <h1>Welcome back, <span class="gradient">Ayesha</span> 👋</h1>
+            <h1>Welcome back, <span class="gradient" id="welcomeName">Student</span> 👋</h1>
             <p>You're 68% through your weekly learning goal. Keep the streak alive — 15 minutes today unlocks your next badge.</p>
             <div class="hero-progress">
               <div class="hp-head"><b>Today's learning goal</b><span>42 / 60 min</span></div>
@@ -232,6 +233,9 @@
   <!-- ============ TOAST ============ -->
   <div class="toast-wrap" id="toastWrap"></div>
 
+  <script>window.TECHNOVA_ALLOWED_ROLE = "student";</script>
+  <script type="module" src="../js/firebase.js"></script>
+  <script type="module" src="../js/guard.js"></script>
   <script src="../js/stdashboard.js" defer></script>
 </body>
 </html>

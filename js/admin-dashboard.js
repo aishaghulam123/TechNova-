@@ -216,16 +216,23 @@ const state = {
 };
 
 /* ---- Toast ---- */
-function toast(msg, type = "info") {
+/* Accepts toast(msg), toast(msg, type[, ms]) AND toast(title, msg, type[, ms])
+   so nothing gets silently dropped regardless of which style calls it. */
+function toast(a, b, c, d) {
+  const TYPES = ["info","success","warn","warning","error"];
+  let title, msg, type, ms;
+  if (TYPES.includes(b)) { title = a; msg = ""; type = b; ms = typeof c === "number" ? c : undefined; }
+  else if (TYPES.includes(c)) { title = a; msg = b || ""; type = c; ms = typeof d === "number" ? d : undefined; }
+  else { title = a; msg = typeof b === "string" ? b : ""; type = "info"; ms = typeof c === "number" ? c : undefined; }
   const wrap = $("#toastWrap");
   if (!wrap) return;
   const icons = { info: "fa-circle-info", success: "fa-circle-check", warn: "fa-triangle-exclamation", error: "fa-circle-xmark" };
   const t = document.createElement("div");
   t.className = `toast ${type}`;
-  t.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i><span>${msg}</span>`;
+  t.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i><span><b>${title}</b>${msg ? ` — ${msg}` : ""}</span>`;
   wrap.appendChild(t);
   setTimeout(() => t.classList.add("show"), 10);
-  setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 300); }, 3000);
+  setTimeout(() => { t.classList.remove("show"); setTimeout(() => t.remove(), 300); }, ms || 3400);
 }
 
 /* ---- Modal ---- */
@@ -915,6 +922,84 @@ function viewProfile() {
 }
 
 /* ==========================================================
+   5b. APPROVALS (real Firebase data — pending signups + courses)
+   ========================================================== */
+function viewApprovals() {
+  return `
+  <div class="view">
+    <div class="section-head">
+      <div><span class="eyebrow-sm">Firebase</span><h1>Approvals</h1></div>
+    </div>
+    <div id="approvalsRoot">
+      <div class="reveal" style="padding:40px;text-align:center;color:var(--muted)">
+        <i class="fa-solid fa-circle-notch fa-spin"></i> Loading pending approvals…
+      </div>
+    </div>
+  </div>`;
+}
+
+function pendingUserRow(u) {
+  return `
+    <div class="reveal" style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border,rgba(125,125,125,.15))">
+      <div style="flex:1;min-width:0">
+        <b>${esc(u.name || "Unnamed")}</b>
+        <span class="status-pill pending" style="margin-left:8px">${esc(u.role)}</span>
+        <div style="color:var(--muted);font-size:13px">${esc(u.email || "")}</div>
+      </div>
+      <button class="btn-primary sm" data-action="approve-pending-user" data-uid="${u.id}"><i class="fa-solid fa-check"></i> Approve</button>
+      <button class="btn-danger sm" data-action="reject-pending-user" data-uid="${u.id}"><i class="fa-solid fa-xmark"></i> Reject</button>
+    </div>`;
+}
+
+function pendingCourseRow(c) {
+  return `
+    <div class="reveal" style="display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border,rgba(125,125,125,.15))">
+      <div style="flex:1;min-width:0">
+        <b>${esc(c.title || "Untitled course")}</b>
+        <span class="status-pill pending" style="margin-left:8px">${esc(c.category || "")}</span>
+        <div style="color:var(--muted);font-size:13px">By ${esc(c.instructorName || "Unknown instructor")}</div>
+      </div>
+      <button class="btn-primary sm" data-action="approve-pending-course" data-cid="${c.id}"><i class="fa-solid fa-check"></i> Approve</button>
+      <button class="btn-danger sm" data-action="reject-pending-course" data-cid="${c.id}"><i class="fa-solid fa-xmark"></i> Reject</button>
+    </div>`;
+}
+
+async function loadApprovals() {
+  const root = $("#approvalsRoot");
+  if (!root) return;
+  if (!window.TechNova) {
+    root.innerHTML = `<p style="color:var(--danger,#e5484d)">Couldn't load approvals: the Firebase helper (js/firebase.js) hasn't loaded on this page. Reload the page, or check the browser console for errors.</p>`;
+    return;
+  }
+  if (window.TechNova.configured === false) {
+    root.innerHTML = `<p style="color:var(--danger,#e5484d)">Firebase isn't connected yet, so there's nothing to approve. Paste your project config into <code>js/firebase.js</code> (see README-FIREBASE.md), then reload this page.</p>`;
+    return;
+  }
+  try {
+    const [users, courses] = await Promise.all([
+      window.TechNova.listPendingUsers(),
+      window.TechNova.listPendingCourses(),
+    ]);
+    root.innerHTML = `
+      <div class="reveal" style="margin-bottom:28px">
+        <h3 style="margin-bottom:10px">Pending signups (${users.length})</h3>
+        ${users.length ? users.map(pendingUserRow).join("") : `<p style="color:var(--muted)">No accounts waiting for approval.</p>`}
+      </div>
+      <div class="reveal">
+        <h3 style="margin-bottom:10px">Pending courses (${courses.length})</h3>
+        ${courses.length ? courses.map(pendingCourseRow).join("") : `<p style="color:var(--muted)">No courses waiting for approval.</p>`}
+      </div>`;
+    // These .reveal blocks were injected *after* render()'s initial
+    // ".reveal -> .in" pass already ran, so without this they'd sit
+    // at opacity:0 forever (data loads fine, buttons work, but
+    // nothing is visible).
+    root.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+  } catch (err) {
+    root.innerHTML = `<p style="color:var(--danger,#e5484d)">Couldn't load approvals: ${esc(err.message || String(err))}. Check your Firebase config in js/firebase.js.</p>`;
+  }
+}
+
+/* ==========================================================
    6. ROUTER + ANIMATIONS
    ========================================================== */
 const VIEWS = {
@@ -922,7 +1007,7 @@ const VIEWS = {
   courses: viewCourses, categories: viewCategories, assignments: viewAssignments,
   quizzes: viewQuizzes, certificates: viewCertificates, announcements: viewAnnouncements,
   messages: viewMessages, analytics: viewAnalytics, revenue: viewRevenue,
-  settings: viewSettings, profile: viewProfile,
+  settings: viewSettings, profile: viewProfile, approvals: viewApprovals,
 };
 
 function render(view = state.view, options = {}) {
@@ -934,6 +1019,7 @@ function render(view = state.view, options = {}) {
   const root = $("#viewRoot");
   if (!root) return;
   root.innerHTML = VIEWS[state.view]();
+  if (state.view === "approvals") loadApprovals();
 
   // Active sidebar item
   $$(".sb-item").forEach((i) => i.classList.toggle("active", i.dataset.view === state.view));
@@ -1118,7 +1204,9 @@ document.addEventListener("click", (e) => {
   switch (a) {
     /* --- Global / shell --- */
     case "logout":
-      confirmDialog("Sign out?", "You will be returned to the login page.", () => { window.location.href = "authentication.html"; }, false);
+      confirmDialog("Sign out?", "You will be returned to the login page.", () => {
+        window.TechNova ? window.TechNova.logout() : (window.location.href = "authentication.html");
+      }, false);
       break;
     case "system-status":
       openModal(`<h2>System Status</h2>
@@ -1212,6 +1300,42 @@ document.addEventListener("click", (e) => {
         toast("Application rejected", "warn"); render();
       });
       break;
+
+    /* --- Firebase: pending signup approvals (Approvals view) --- */
+    case "approve-pending-user": {
+      const uid = btn.dataset.uid;
+      window.TechNova.approveUser(uid)
+        .then(() => { toast("Account approved — they can log in now", "success"); loadApprovals(); })
+        .catch((err) => toast("Couldn't approve", err.message || "Try again", "error"));
+      break;
+    }
+    case "reject-pending-user": {
+      const uid = btn.dataset.uid;
+      confirmDialog("Reject this account?", "They will not be able to log in.", () => {
+        window.TechNova.rejectUser(uid)
+          .then(() => { toast("Account rejected", "warn"); loadApprovals(); })
+          .catch((err) => toast("Couldn't reject", err.message || "Try again", "error"));
+      });
+      break;
+    }
+
+    /* --- Firebase: pending course approvals (Approvals view) --- */
+    case "approve-pending-course": {
+      const cid = btn.dataset.cid;
+      window.TechNova.approveCourse(cid)
+        .then(() => { toast("Course approved and published", "success"); loadApprovals(); })
+        .catch((err) => toast("Couldn't approve", err.message || "Try again", "error"));
+      break;
+    }
+    case "reject-pending-course": {
+      const cid = btn.dataset.cid;
+      confirmDialog("Reject this course?", "The instructor will need to resubmit it.", () => {
+        window.TechNova.rejectCourse(cid)
+          .then(() => { toast("Course rejected", "warn"); loadApprovals(); })
+          .catch((err) => toast("Couldn't reject", err.message || "Try again", "error"));
+      });
+      break;
+    }
     case "suspend-instructor": {
       const i = DATA.instructors.find((x) => x.id === +id);
       i.status = i.status === "suspended" ? "approved" : "suspended";
@@ -1576,6 +1700,7 @@ function initTopbar() {
     <a href="#" class="np-item"><div class="np-ic ${n.tone}"><i class="fa-solid ${n.icon}"></i></div>
     <div><b>${n.text}</b><span>${n.time}</span></div></a>`).join("");
   bell?.addEventListener("click", (e) => {
+    if (e.target.closest("#notifPanel")) return; // let "Mark all read" etc. work normally
     e.stopPropagation();
     if (!panel) return;
     panel.classList.toggle("open");
@@ -1589,6 +1714,7 @@ function initTopbar() {
   // Profile dropdown (animated)
   const pBtn = $("#profileBtn"), pDrop = $("#profileDropdown");
   pBtn?.addEventListener("click", (e) => {
+    if (e.target.closest("#profileDropdown")) return; // let dropdown links/buttons work normally
     e.stopPropagation();
     if (!pDrop) return;
     pDrop.classList.toggle("open");
@@ -1596,10 +1722,10 @@ function initTopbar() {
   });
 
   // Close popovers on outside click
-  document.addEventListener("click", () => {
-    panel?.classList.remove("open");
-    pDrop?.classList.remove("open");
-    $("#searchResults")?.classList.remove("open");
+  document.addEventListener("click", (e) => {
+    if (!panel?.contains(e.target) && !bell?.contains(e.target)) panel?.classList.remove("open");
+    if (!pBtn?.contains(e.target)) pDrop?.classList.remove("open");
+    if (!$("#searchInput")?.contains(e.target) && !$("#searchResults")?.contains(e.target)) $("#searchResults")?.classList.remove("open");
   });
 
   initGlobalSearch();
