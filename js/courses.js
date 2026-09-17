@@ -1,7 +1,4 @@
-/* =========================================================
-   TechNova Academy — Courses listing page
-   Vanilla ES6 · GSAP · dummy data from courses-data.js
-   ========================================================= */
+
 
 const q  = (s, el = document) => el.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -17,14 +14,12 @@ const sortSel = q("#sortBy");
 
 q("#year").textContent = new Date().getFullYear();
 
-/* Build the category dropdown from the data itself */
 [...new Set(CATALOG.map((c) => c.cat))].sort().forEach((cat) => {
   const o = document.createElement("option");
   o.value = o.textContent = cat;
   catSel.appendChild(o);
 });
 
-/* Deep link support: courses.html?cat=AI&q=react (used by the home page footer) */
 const params = new URLSearchParams(location.search);
 if (params.get("cat")) catSel.value = params.get("cat");
 if (params.get("q")) search.value = params.get("q");
@@ -76,8 +71,7 @@ function render() {
 [search, catSel, diffSel, sortSel].forEach((el) => el.addEventListener("input", render));
 render();
 
-/* Merge in real, admin-approved instructor courses from Firestore
-   (prefixed "fs-" so course-detail.html knows to fetch them live). */
+
 async function mergeApprovedCourses() {
   if (!window.TechNova?.listApprovedCourses) return;
   try {
@@ -98,7 +92,7 @@ async function mergeApprovedCourses() {
       }
     });
     render();
-  } catch (err) { /* Firestore not configured yet — dummy catalog still shows */ }
+  } catch (err) { }
 }
 mergeApprovedCourses();
 

@@ -1,14 +1,4 @@
-/* =========================================================
-   TechNova Academy — Student Dashboard (v2)
-   Pure vanilla ES6 · GSAP · Chart.js · jsPDF
-   ========================================================= */
 
-/* ---------- Data ----------
-   `courses` (enrolled) and `certificates` start EMPTY — a new
-   student sees nothing until they actually enroll in a course
-   (see loadMyEnrollments at the bottom, and the "Enroll" button
-   on course-detail.html). Nothing here is shared between
-   different student accounts. */
 const courses = [];
 const certificates = [];
 const recommended = [

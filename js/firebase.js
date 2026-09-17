@@ -291,11 +291,25 @@ function onAuth(callback) {
    --------------------------------------------------------- */
 function initAuthRedirect() {
   if (!IS_CONFIGURED) return; // nothing to redirect from until Firebase is set up
+
+  // Only auto-redirect from the marketing/landing page (index.html).
+  // NOT from authentication.html: if a user is already signed in
+  // (Firebase keeps sessions alive across page loads) and opens the
+  // auth page to sign up a new/second account, this redirect used to
+  // fire mid-interaction and yank them away to their old dashboard —
+  // which looked exactly like "the signup form shows for a second
+  // then disappears". Authentication.html is also the page you use
+  // to switch accounts, so it should never bounce you on its own.
   const path = window.location.pathname;
-  const onEntryPage = path === "/" || path.endsWith("/index.html") || path.endsWith("/authentication.html");
+  const onEntryPage = path === "/" || path.endsWith("/index.html");
   if (!onEntryPage) return;
 
-  onAuthStateChanged(auth, async (fbUser) => {
+  // Only react to the auth state Firebase already knows about when the
+  // page first loads — not to whatever this same page does afterwards
+  // (e.g. it shouldn't matter for this listener if something on this
+  // page later signs a user in or out).
+  const unsubscribe = onAuthStateChanged(auth, async (fbUser) => {
+    unsubscribe();
     if (fbUser) {
       const snap = await getDoc(doc(db, "users", fbUser.uid));
       if (snap.exists()) {
@@ -313,7 +327,6 @@ function initAuthRedirect() {
     }
   });
 }
-
 /* ===========================================================
    COURSES — CRUD + admin-approval workflow
    =========================================================== */

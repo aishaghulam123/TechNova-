@@ -1,9 +1,4 @@
-/* =========================================================
-   TechNova — cursor.js
-   The same custom cursor used on the landing page, shared by
-   courses / course-detail / authentication.
-   Needs: <div class="cursor-dot"></div><div class="cursor-ring"></div>
-   ========================================================= */
+
 (() => {
   "use strict";
 

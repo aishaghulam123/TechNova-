@@ -1,7 +1,4 @@
-/* =========================================================
-   TechNova Academy — Shared course catalogue (dummy data)
-   Used by courses.html and course-detail.html
-   ========================================================= */
+
 
 const CATALOG = [
   { id: "react-nextjs",   title: "React & Next.js — Production Grade", instr: "Sara Ahmed", cat: "Frontend", diff: "Intermediate", duration: "42h", lessons: 96,  rating: 4.9, students: 12480, price: "$149", img: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&auto=format&fit=crop" },
@@ -18,7 +15,6 @@ const CATALOG = [
   { id: "css-motion",     title: "Advanced CSS & Motion",              instr: "Sara Ahmed", cat: "Frontend", diff: "Intermediate", duration: "22h", lessons: 56,  rating: 4.9, students: 7620,  price: "$119", img: "https://images.unsplash.com/photo-1523437113738-bbd3cc89fb19?w=800&auto=format&fit=crop" },
 ];
 
-/* Dummy description + outline shared by every course (title/instructor stay dynamic) */
 const DUMMY_DESCRIPTION = `This hands-on program takes you from the core fundamentals all the way to
 shipping real, production-ready work. Every module mixes short video lessons, guided practice files and a
 small project so the ideas actually stick. You will build a portfolio piece by the end, get downloadable

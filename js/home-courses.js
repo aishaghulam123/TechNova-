@@ -1,9 +1,4 @@
-/* =========================================================
-   TechNova — home-courses.js
-   Renders the first N courses from CATALOG (js/courses-data.js)
-   into #homeCourseGrid using the same card markup as courses.html.
-   Swap CATALOG for a Firestore query later — nothing else changes.
-   ========================================================= */
+
 (() => {
   "use strict";
 
@@ -15,7 +10,6 @@
 
   const limit = +grid.dataset.limit || 6;
 
-  /* Same card as the courses page, with Remix icons (home page font set) */
   const cardHTML = (c) => `
     <a class="cat-card" id="home-course-${esc(c.id)}" data-course-id="${esc(c.id)}"
        href="pages/course-detail.html?id=${encodeURIComponent(c.id)}">

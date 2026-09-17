@@ -1,9 +1,4 @@
-/* ==========================================================
-   Instructor Dashboard — TechNova Academy
-   Overrides on top of stdashboard.css (same tokens).
-   ========================================================== */
 
-/* Views are switched by JS by swapping innerHTML of #viewRoot */
 .view { display: block; animation: viewFade .35s var(--ease); }
 @keyframes viewFade { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: none; } }
 

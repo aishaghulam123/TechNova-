@@ -1,7 +1,3 @@
-/* ==========================================================
-   TechNova Academy — Instructor Dashboard (Vanilla ES6)
-   All frontend-only. Dummy data. Modular for future Firebase.
-   ========================================================== */
 
 /* ---------- Utility helpers ---------- */
 const $ = (s, r = document) => r.querySelector(s);
@@ -15,11 +11,7 @@ const el = (tag, cls, html) => {
 const fmt = n => n.toLocaleString();
 const money = n => "$" + n.toLocaleString();
 
-/* ---------- Data ----------
-   instructor / stats / courses below start EMPTY and are filled
-   from this instructor's own real Firestore data on load (see
-   loadMyCoursesFromFirestore at the bottom). Nothing here is
-   shared between different instructor accounts anymore. */
+/* ---------- Data ----------*/
 const DATA = {
   instructor: {
     name: "", email: "", bio: "", education: "", experience: "",
@@ -100,8 +92,7 @@ const state = {
 };
 
 /* ---------- Toast ---------- */
-/* Accepts toast(msg), toast(msg, type[, ms]) AND toast(title, msg, type[, ms])
-   so nothing gets silently dropped regardless of which style calls it. */
+
 function toast(a, b, c, d) {
   const TYPES = ["info","success","warn","warning","error"];
   let title, msg, type, ms;
@@ -164,9 +155,6 @@ function animateCounter(node, target, prefix = "", suffix = "") {
   counterFrames.add(frame);
 }
 
-/* ==========================================================
-   VIEWS — each returns HTML string. Rendered into #viewRoot.
-   ========================================================== */
 
 /* ----- Dashboard ----- */
 function viewDashboard() {
@@ -714,9 +702,7 @@ function render(view) {
 
   if (window.gsap && !reduceMotion()) {
     const plain = reveals.filter(n => !n.classList.contains("stat-card"));
-    // fromTo (never `from`) so the end value is always a fully visible element —
-    // `from` would capture the mid-transition opacity as its target and leave content faded.
-    if (plain.length) gsap.fromTo(plain, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .5, stagger: .06, ease: "power2.out", overwrite: "auto", clearProps: "opacity,transform" });
+     if (plain.length) gsap.fromTo(plain, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .5, stagger: .06, ease: "power2.out", overwrite: "auto", clearProps: "opacity,transform" });
     if (cards.length) gsap.fromTo(cards, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .45, stagger: .08, ease: "power2.out", overwrite: "auto", clearProps: "opacity,transform" });
   }
 
@@ -836,11 +822,6 @@ function syncCreateForm() {
   refreshPreview();
 }
 
-/* ==========================================================
-   FIREBASE — send a new course to the admin for approval.
-   The course is NOT visible to students until an admin
-   approves it from Admin Dashboard -> Approvals.
-   ========================================================== */
 async function submitCourseForApproval() {
   const d = state.createDraft;
   if (!d.title || !d.title.trim()) { toast("Please enter a course title", "warn"); return; }
@@ -876,10 +857,6 @@ async function submitCourseForApproval() {
     toast("Couldn't submit course", msg, "error", 6000);
   }
 }
-
-/* Load this instructor's own profile + real courses from Firestore.
-   Nothing dummy is shown — a brand-new instructor account starts
-   completely empty until they add and get courses approved. */
 async function loadMyCoursesFromFirestore() {
   const session = window.TechNova?.getSession?.();
   if (!session) return; // guard.js will already be redirecting if there's no session
@@ -1046,7 +1023,6 @@ document.addEventListener("input", e => {
   if (state.view !== "create") return;
   if (e.target.matches("[id^='f-'], [data-mfield], [data-lfield]")) {
     syncCreateForm();
-    // Live-update title in preview without full re-render (perf)
     const t = $("#pv-title"); if (t && e.target.id === "f-title") t.textContent = state.createDraft.title || "Your course title";
   }
 });

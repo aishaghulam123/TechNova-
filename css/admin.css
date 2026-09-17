@@ -1,9 +1,3 @@
-/* ==========================================================
-   Admin Dashboard — TechNova Academy
-   Layered on top of css/stdashboard.css (tokens + shell) and
-   css/instructor.css (tables, forms, chat, profile blocks).
-   Only the pieces that are unique to the admin portal live here.
-   ========================================================== */
 
 /* ---------- Welcome hero ---------- */
 .admin-hero {

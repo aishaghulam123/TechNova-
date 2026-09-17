@@ -1,28 +1,4 @@
-/* =========================================================
-   TechNova Academy — guard.js
-   ---------------------------------------------------------
-   Page guard for role-protected dashboards (admin / instructor
-   / student). This is the "admin guard" pattern you shared,
-   generalised for any role and adapted to this project's real
-   file names (authentication.html, admin.html, instructor.html,
-   stdashboard.html live together inside /pages/).
 
-   HOW TO USE (already added to admin.html / instructor.html /
-   stdashboard.html — nothing to do):
-     <script>window.TECHNOVA_ALLOWED_ROLE = "admin";</script>
-     <script type="module" src="../js/firebase.js"></script>
-     <script type="module" src="../js/guard.js"></script>
-
-   What it does:
-   1. INSTANT check from the cached session (localStorage) so the
-      page doesn't flash before Firebase responds — exactly like
-      your pasted guard:
-        const user = ...; if (!user) redirect to login;
-        else if (user.role !== "admin") redirect away.
-   2. REAL check against Firebase Auth + Firestore right after,
-      so a revoked/suspended/rejected account (or a stale/tampered
-      localStorage value) gets kicked out even if step 1 passed.
-   ========================================================= */
 (function () {
   "use strict";
 
@@ -33,7 +9,7 @@
 
   const roleOk = (role) => role === allowed;
 
-  /* ---- 1) Instant check (your pasted admin-guard pattern) ---- */
+  /* ---- 1) Instant check  ---- */
   const cached = TN.getSession();
   if (!cached) {
     window.location.replace(TN.loginPath());
@@ -59,7 +35,6 @@
       window.location.replace(TN.homeFor(user.role));
       return;
     }
-    // All good — keep the cached session fresh.
     TN.setSession(user);
   });
 })();
