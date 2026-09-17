@@ -1,17 +1,4 @@
-/* ==========================================================
-   TechNova Academy — Admin Dashboard (Vanilla ES6)
-   Frontend only. Dummy data. No backend / no Firebase.
-   Structure:
-     1. Helpers
-     2. Dummy data (single source of truth -> easy to swap for an API later)
-     3. UI primitives (toast, modal, ripple, counters)
-     4. Reusable table module (search / sort / filter / paginate)
-     5. Views (one function per sidebar entry)
-     6. Router + animations
-     7. Charts
-     8. Event delegation for every button
-     9. Shell init (sidebar, topbar, search, cursor, FAB)
-   ========================================================== */
+
 
 /* ==========================================================
    1. HELPERS
@@ -25,8 +12,6 @@ const avatar = (i) => `https://i.pravatar.cc/80?img=${i}`;
 
 /* ==========================================================
    2. DUMMY DATA
-   Swap these arrays with API/Firebase results later — the
-   views only read from DATA, never from the DOM.
    ========================================================== */
 const DATA = {
   admin: {
@@ -216,8 +201,7 @@ const state = {
 };
 
 /* ---- Toast ---- */
-/* Accepts toast(msg), toast(msg, type[, ms]) AND toast(title, msg, type[, ms])
-   so nothing gets silently dropped regardless of which style calls it. */
+
 function toast(a, b, c, d) {
   const TYPES = ["info","success","warn","warning","error"];
   let title, msg, type, ms;
@@ -243,20 +227,18 @@ function openModal(html) {
   body.innerHTML = html;
   m.classList.add("open");
   m.setAttribute("aria-hidden", "false");
-  // fromTo (never `from`): the panel also has a CSS pop-in animation, so `from`
-  // would read the mid-animation opacity (0) as its end value and hide the modal.
+ 
   if (window.gsap) gsap.fromTo(".modal-panel", { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: .35, ease: "power2.out", overwrite: "auto", clearProps: "opacity,transform" });
 }
 function closeModal() {
   const m = $("#modal");
   if (!m) return;
-  // Move focus out before hiding, otherwise the browser warns about
-  // aria-hidden being applied to an element that still holds focus.
+ 
   if (m.contains(document.activeElement)) document.activeElement.blur();
   m.classList.remove("open");
   m.setAttribute("aria-hidden", "true");
 }
-// closest() so clicks on icons inside a [data-close] button still work
+
 document.addEventListener("click", (e) => { if (e.target.closest("[data-close]")) closeModal(); });
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
 
@@ -309,8 +291,7 @@ const sparkHTML = (arr) => `<div class="spark">${arr.map((v) => `<i style="heigh
 
 /* ==========================================================
    4. REUSABLE TABLE MODULE
-   Handles search, sorting, filtering and pagination for any
-   dataset. Views only describe columns + row rendering.
+ 
    ========================================================== */
 const PAGE_SIZE = 6;
 

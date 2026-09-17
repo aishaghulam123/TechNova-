@@ -1,7 +1,4 @@
-/* ==========================================================
-   DARK THEME OVERRIDE — courses.html + course-detail.html
-   (overrides stdashboard.css tokens, same variable names)
-   ========================================================== */
+
 :root{
   --bg: #0B0C0E;
   --card: #16171A;
@@ -62,10 +59,8 @@ body{
 /* toast + empty state icon color */
 .empty-state i{ color: var(--gold); opacity:.65; }
 
-/* ==========================================================
-   Courses + Course Detail pages — TechNova Academy
-   Builds on stdashboard.css tokens (same branding).
-   ========================================================== */
+
+
 
 .page-wrap { max-width: 1240px; margin: 0 auto; padding: 28px 22px 60px; padding-top: 100px;  }
 

@@ -1,9 +1,3 @@
-/* =========================================================
-   TechNova — script.js
-   GSAP + ScrollTrigger for reveal + parallax
-   AOS for lightweight scroll animation
-   Custom cursor, magnetic buttons, 3D tilt, counters, slider
-   ========================================================= */
 
 /* ---------- AOS ---------- */
 AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 60 });
@@ -192,10 +186,7 @@ if (contactForm) {
   contactForm.addEventListener('submit', e => {
     e.preventDefault();
     if (!contactForm.checkValidity()) { contactForm.reportValidity(); return; }
-    /* const lead = {
-         firstName: contactFirstName.value, lastName: contactLastName.value,
-         email: contactEmail.value, track: contactTrack.value, message: contactMessage.value
-       };  ->  addDoc(collection(db, "leads"), lead) */
+    
     document.getElementById('contactFormOk')?.classList.add('show');
     contactForm.reset();
   });

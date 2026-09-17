@@ -1,8 +1,4 @@
-/* =========================================================
-   TechNova — presence.js
-   Nationwide Presence section: interactive Pakistan map,
-   GSAP ScrollTrigger reveals, Chart.js analytics dashboard
-   ========================================================= */
+
 
 (function () {
   'use strict';

@@ -200,15 +200,59 @@ if (!course) {
           toast(err?.message || "Couldn't enroll — please try again.", "error");
         }
       },
-      wishlist: () => { b.innerHTML = '<i class="fa-solid fa-heart"></i> Saved to wishlist'; toast("Added to your wishlist.", "info"); },
-      share:    () => {
-        navigator.clipboard?.writeText(location.href)
-          .then(() => toast("Course link copied to clipboard.", "success"))
-          .catch(() => toast("Copy the link from your address bar.", "warn"));
+           wishlist: async () => {
+        /* Not signed in yet? Send them to the auth page first. */
+        const session = window.TechNova?.getSession?.();
+        if (!session) {
+          toast("Please sign in to save courses to your wishlist — redirecting…", "info");
+          setTimeout(() => { location.href = `authentication.html?mode=signup&next=${encodeURIComponent(location.href)}`; }, 1100);
+          return;
+        }
+        b.disabled = true;
+        try {
+          if (b.dataset.saved === "true") {
+            await window.TechNova.removeFromWishlist(b.dataset.wishlistId);
+            b.dataset.saved = "false";
+            b.dataset.wishlistId = "";
+            b.innerHTML = '<i class="fa-regular fa-heart"></i> Add to wishlist';
+            toast("Removed from your wishlist.", "info");
+          } else {
+            const id = await window.TechNova.addToWishlist(session, course);
+            b.dataset.saved = "true";
+            b.dataset.wishlistId = id;
+            b.innerHTML = '<i class="fa-solid fa-heart"></i> Saved to wishlist';
+            toast("Added to your wishlist.", "success");
+          }
+        } catch (err) {
+          toast(err?.message || "Couldn't update your wishlist — please try again.", "error");
+        } finally {
+          b.disabled = false;
+        }
       },
     };
     acts[b.dataset.act]?.();
   });
+
+
+  /* If this course is already in the signed-in student's wishlist,
+     show the button as saved right away instead of always starting
+     from "Add to wishlist". */
+  (async () => {
+    const session = window.TechNova?.getSession?.();
+    const wishlistBtn = q("#wishlistBtn");
+    if (!session || !wishlistBtn || !window.TechNova?.listWishlist) return;
+    try {
+      const items = await window.TechNova.listWishlist(session.uid);
+      const saved = items.find((w) => String(w.courseId) === String(course.id));
+      if (saved) {
+        wishlistBtn.dataset.saved = "true";
+        wishlistBtn.dataset.wishlistId = saved.id;
+        wishlistBtn.innerHTML = '<i class="fa-solid fa-heart"></i> Saved to wishlist';
+      }
+    } catch (err) { /* not critical — button just stays in its default state */ }
+  })();
+
+
 
   /* Entrance animation */
   window.addEventListener("load", () => {

@@ -1,4 +1,4 @@
-/* TechNova Academy — Auth page (Vanilla JS + GSAP) */
+
 (() => {
   "use strict";
   const $  = (s, r = document) => r.querySelector(s);
@@ -60,7 +60,7 @@
   const tabs = $(".tabs");
   const tabBtns = $$(".tab", tabs);
   const panels = $$(".panel");
-  const switchTab = (name) => {
+   const switchTab = (name, { animate = true } = {}) => {
     tabs.dataset.active = name;
     tabBtns.forEach(b => {
       const on = b.dataset.tab === name;
@@ -71,15 +71,15 @@
       const on = p.dataset.panel === name;
       p.classList.toggle("active", on);
     });
-    if (window.gsap) {
+    if (animate && window.gsap) {
       const active = $(`.panel[data-panel="${name}"]`);
       gsap.from(active.children, { y: 12, opacity: 0, duration: .45, stagger: .05, ease: "power3.out" });
     }
   };
   tabBtns.forEach(b => b.addEventListener("click", () => switchTab(b.dataset.tab)));
-  // Support ?mode=signup
+
   const params = new URLSearchParams(location.search);
-  if (params.get("mode") === "signup") switchTab("signup");
+  if (params.get("mode") === "signup") switchTab("signup", { animate: false });
   // ------------------------------------------------------------------
   // Password visibility toggle
   // ------------------------------------------------------------------
@@ -174,9 +174,9 @@
   // Redirect helper
   // ------------------------------------------------------------------
   const redirectByRole = (role, user = {}) => {
-    // Persist a lightweight session (see js/firebase.js)
+    
     window.TechNova?.setSession({ role, ...user });
-    // ?next=... lets a page send the user here and get them back afterwards
+   
     const next = params.get("next");
     const target = next || window.TechNova?.homeFor(role) ||
       (role === "instructor" ? "instructor.html" : "stdashboard.html");
